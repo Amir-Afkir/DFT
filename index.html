@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DFT - Dépannage Fuite Toiture à Orléans et dans le Loiret</title>
+  <meta name="description" content="DFT localise les infiltrations, sécurise les toitures et intervient pour la recherche de fuite, la mise hors d'eau, le bâchage, l'étanchéité et la zinguerie autour d'Orléans.">
+  <meta name="theme-color" content="#082B45">
+  <link rel="canonical" href="https://dft45.net/">
+  <link rel="icon" href="assets/logo/logo-dft.png" type="image/png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DFT - Dépannage Fuite Toiture à Orléans">
+  <meta property="og:description" content="Recherche de fuite, mise hors d'eau, bâchage et réparation toiture autour d'Orléans et dans le Loiret.">
+  <meta property="og:url" content="https://dft45.net/">
+  <meta property="og:image" content="https://dft45.net/assets/images/hero-intervention.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DFT - Dépannage Fuite Toiture à Orléans">
+  <meta name="twitter:description" content="Recherche de fuite, mise hors d'eau, bâchage et réparation toiture autour d'Orléans et dans le Loiret.">
+  <meta name="twitter:image" content="https://dft45.net/assets/images/hero-intervention.jpg">
+  <script>document.documentElement.classList.add("js");</script>
+  <style>
+    :root {
+      --blue-night: #082B45;
+      --blue-roof: #0F4C75;
+      --off-white: #F7F8FA;
+      --text-gray: #4B5563;
+      --orange: #FF7A00;
+      --orange-text: #A84B00;
+      --black-soft: #111827;
+      --white: #FFFFFF;
+      --line: rgba(8, 43, 69, 0.14);
+      --shadow: 0 18px 45px rgba(8, 43, 69, 0.16);
+      --scroll: 0;
+      --hero-y: 0px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--black-soft);
+      background: var(--off-white);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: clip;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    p,
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      height: 3px;
+      pointer-events: none;
+      background: transparent;
+    }
+
+    .scroll-progress span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--orange), #FFB15D);
+      transform: scaleX(var(--scroll));
+      transform-origin: left center;
+    }
+
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 700ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .js [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .js [data-reveal]:not(.is-visible) *,
+    .js [data-reveal]:not(.is-visible)::before,
+    .js [data-reveal]:not(.is-visible)::after {
+      animation-play-state: paused !important;
+    }
+
+    .tilt {
+      transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translate3d(0, 0, 0);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+
+    .tilt:hover {
+      box-shadow: 0 24px 54px rgba(8, 43, 69, 0.2);
+    }
+
+    .section {
+      padding: 72px 0;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue-roof);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 30px;
+      height: 2px;
+      background: var(--orange);
+      content: "";
+    }
+
+    .section-title {
+      max-width: 720px;
+      margin-top: 10px;
+      color: var(--blue-night);
+      font-size: 2rem;
+      line-height: 1.14;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .section-lead {
+      max-width: 660px;
+      margin-top: 18px;
+      color: var(--text-gray);
+      font-size: 1.05rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      font-weight: 800;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn::after {
+      position: absolute;
+      inset: auto;
+      left: var(--ripple-x, 50%);
+      top: var(--ripple-y, 50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.44);
+      content: "";
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: none;
+    }
+
+    .btn.ripple::after {
+      animation: ripple 520ms ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(36);
+      }
+    }
+
+    .btn:focus-visible,
+    .nav-toggle:focus-visible,
+    .nav-link:focus-visible {
+      outline: 3px solid rgba(255, 122, 0, 0.42);
+      outline-offset: 3px;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--blue-night);
+      box-shadow: 0 12px 24px rgba(255, 122, 0, 0.22);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 16px 30px rgba(255, 122, 0, 0.28);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255, 255, 255, 0.42);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .btn-dark {
+      border-color: var(--blue-night);
+      color: var(--blue-night);
+      background: transparent;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 248, 250, 0.9);
+      border-bottom: 1px solid rgba(8, 43, 69, 0.1);
+      backdrop-filter: blur(16px);
+      transition: box-shadow 220ms ease, background-color 220ms ease;
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(247, 248, 250, 0.96);
+      box-shadow: 0 10px 30px rgba(8, 43, 69, 0.11);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 5px 16px rgba(8, 43, 69, 0.16);
+    }
+
+    .brand-text {
+      display: grid;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      color: var(--blue-night);
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .brand-sub {
+      color: var(--text-gray);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-list {
+      display: none;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--black-soft);
+      font-size: 0.94rem;
+      font-weight: 750;
+    }
+
+    .nav-link::after {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+      height: 2px;
+      background: var(--orange);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 180ms ease;
+    }
+
+    .nav-link:hover {
+      color: var(--blue-roof);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.is-active::after {
+      transform: scaleX(1);
+    }
+
+    .header-call {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(8, 43, 69, 0.16);
+      border-radius: 6px;
+      background: var(--white);
+      color: var(--blue-night);
+      cursor: pointer;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      content: "";
+      transition: transform 160ms ease, opacity 160ms ease;
+    }
+
+    .nav-toggle span::before {
+      transform: translateY(-7px);
+    }
+
+    .nav-toggle span::after {
+      transform: translateY(5px);
+    }
+
+    .nav-toggle[aria-expanded="true"] span {
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] span::before {
+      opacity: 0;
+    }
+
+    .nav-toggle[aria-expanded="true"] span::after {
+      transform: translateY(-2px) rotate(90deg);
+    }
+
+    .mobile-panel {
+      display: none;
+      position: fixed;
+      inset: 74px 0 auto 0;
+      z-index: 45;
+      padding: 18px 16px 22px;
+      background: rgba(247, 248, 250, 0.98);
+      border-bottom: 1px solid rgba(8, 43, 69, 0.12);
+      box-shadow: 0 28px 46px rgba(8, 43, 69, 0.16);
+    }
+
+    .mobile-panel.open {
+      display: block;
+    }
+
+    .mobile-panel a {
+      display: block;
+      padding: 13px 0;
+      color: var(--blue-night);
+      font-weight: 800;
+      border-bottom: 1px solid rgba(8, 43, 69, 0.1);
+    }
+
+      .mobile-panel .btn {
+      margin-top: 16px;
+      width: 100%;
+      color: var(--blue-night);
+      border-bottom: 0;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 720px;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(8, 43, 69, 0.98) 0%, rgba(8, 43, 69, 0.92) 48%, rgba(8, 43, 69, 0.35) 100%),
+        var(--blue-night);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::after {
+      position: absolute;
+      right: -80px;
+      bottom: -160px;
+      width: 460px;
+      height: 460px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      content: "";
+      animation: soft-pulse 8s ease-in-out infinite;
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image: repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 24px);
+      content: "";
+      opacity: 0.16;
+      transform: translateX(-8%);
+      animation: rain-drift 18s linear infinite;
+      pointer-events: none;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0 0 0 42%;
+      z-index: 0;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.95;
+      transform: translateY(var(--hero-y)) scale(1.04);
+      transition: transform 80ms linear;
+    }
+
+    .hero-media::before {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, var(--blue-night) 0%, rgba(8, 43, 69, 0.78) 20%, rgba(8, 43, 69, 0.14) 65%),
+        linear-gradient(0deg, rgba(8, 43, 69, 0.72), transparent 36%);
+      content: "";
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-items: center;
+      min-height: 720px;
+      padding: 76px 0 56px;
+    }
+
+    .hero-copy {
+      max-width: 710px;
+      transform: translateY(calc(var(--hero-y) * -0.22));
+      transition: transform 80ms linear;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #FFD5AD;
+      font-size: 0.86rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      width: 32px;
+      height: 2px;
+      background: var(--orange);
+      content: "";
+    }
+
+    .hero h1 {
+      margin-top: 18px;
+      max-width: 680px;
+      color: var(--white);
+      font-size: 2.55rem;
+      line-height: 1.04;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .hero-lead {
+      max-width: 610px;
+      margin-top: 22px;
+      color: rgba(255, 255, 255, 0.83);
+      font-size: 1.1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 640px;
+      gap: 1px;
+      margin-top: 40px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-proof span {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      padding: 14px;
+      background: rgba(8, 43, 69, 0.58);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.92rem;
+      font-weight: 800;
+      transition: background-color 180ms ease, transform 180ms ease;
+    }
+
+    .hero-proof span:hover {
+      background: rgba(255, 122, 0, 0.28);
+      transform: translateY(-2px);
+    }
+
+    .hero-status {
+      display: inline-grid;
+      gap: 4px;
+      margin-top: 24px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.86rem;
+      font-weight: 760;
+    }
+
+    .hero-status strong {
+      color: var(--white);
+      font-size: 0.98rem;
+    }
+
+    .hero-call-card {
+      display: none;
+      position: relative;
+      align-self: end;
+      justify-self: end;
+      width: min(320px, 100%);
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 4px solid var(--orange);
+      border-radius: 8px;
+      background: rgba(247, 248, 250, 0.94);
+      color: var(--blue-night);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(16px);
+    }
+
+    .call-label {
+      color: var(--orange-text);
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .hero-phone {
+      display: block;
+      margin-top: 6px;
+      color: var(--blue-night);
+      font-size: 1.55rem;
+      line-height: 1.05;
+      font-weight: 950;
+    }
+
+    .hero-call-card p {
+      margin-top: 10px;
+      color: var(--text-gray);
+      font-size: 0.92rem;
+    }
+
+    .hero-call-card small {
+      display: block;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(8, 43, 69, 0.12);
+      color: var(--blue-roof);
+      font-weight: 820;
+    }
+
+    .hero .btn-primary,
+    .header-call,
+    .mobile-actions .btn-primary {
+      animation: cta-breathe 3.2s ease-in-out infinite;
+    }
+
+    @keyframes cta-breathe {
+      50% {
+        box-shadow: 0 18px 38px rgba(255, 122, 0, 0.34);
+      }
+    }
+
+    @keyframes rain-drift {
+      to {
+        transform: translateX(8%);
+      }
+    }
+
+    @keyframes soft-pulse {
+      50% {
+        transform: scale(1.08);
+        opacity: 0.7;
+      }
+    }
+
+    .diagnostic-3d {
+      background:
+        linear-gradient(180deg, #FFFFFF, var(--off-white));
+      overflow: hidden;
+    }
+
+    .diagnostic-layout {
+      display: grid;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .diagnostic-copy {
+      max-width: 560px;
+    }
+
+    .diagnostic-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+      list-style: none;
+    }
+
+    .diagnostic-list li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--blue-night);
+      font-weight: 820;
+    }
+
+    .diagnostic-list li span {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(255, 122, 0, 0.38);
+      border-radius: 50%;
+      color: var(--orange-text);
+      background: rgba(255, 122, 0, 0.08);
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+
+    .diagnostic-stage {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      border: 1px solid rgba(8, 43, 69, 0.12);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 72% 14%, rgba(255, 122, 0, 0.16), transparent 32%),
+        linear-gradient(145deg, #082B45, #0F4C75 58%, #EAF0F6 58%);
+      box-shadow: var(--shadow);
+      perspective: 1100px;
+    }
+
+    .diagnostic-stage::before {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 36px 36px;
+      content: "";
+      mask-image: linear-gradient(180deg, black, transparent);
+      opacity: 0.18;
+    }
+
+    .roof-model {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 320px;
+      height: 230px;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -48%) rotateX(58deg) rotateZ(-28deg);
+      animation: model-float 7s ease-in-out infinite;
+    }
+
+    .roof-plane {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.28), transparent 20%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0 10px, transparent 10px 22px),
+        #123E5D;
+      box-shadow: 0 34px 70px rgba(0, 0, 0, 0.25);
+      transform: translateZ(12px);
+    }
+
+    .roof-plane::before {
+      position: absolute;
+      inset: 22px 26px auto auto;
+      width: 74px;
+      height: 54px;
+      border-radius: 8px;
+      background: #DCE5ED;
+      box-shadow: 0 9px 0 #AAB7C5;
+      content: "";
+      transform: translateZ(22px);
+    }
+
+    .roof-gutter {
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      bottom: 20px;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #E9EEF4, #8998A9);
+      transform: translateZ(34px);
+      box-shadow: 0 12px 18px rgba(0, 0, 0, 0.22);
+    }
+
+    .leak-zone {
+      position: absolute;
+      right: 62px;
+      bottom: 54px;
+      width: 52px;
+      height: 52px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      background: rgba(255, 122, 0, 0.18);
+      box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.48);
+      transform: translateZ(44px);
+      animation: leak-pulse 1.9s ease-out infinite;
+    }
+
+    .water-drop,
+    .water-drop::before,
+    .water-drop::after {
+      position: absolute;
+      width: 7px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(199, 231, 255, 0.92);
+      content: "";
+      transform: translateZ(52px);
+      animation: drop-slide 2.8s linear infinite;
+    }
+
+    .water-drop {
+      right: 84px;
+      bottom: 100px;
+    }
+
+    .water-drop::before {
+      right: -24px;
+      bottom: 24px;
+      animation-delay: 0.9s;
+    }
+
+    .water-drop::after {
+      right: 26px;
+      bottom: -32px;
+      animation-delay: 1.6s;
+    }
+
+    .scan-line {
+      position: absolute;
+      inset: 26px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.52), transparent);
+      opacity: 0.58;
+      transform: translateX(-120%);
+      animation: scan 4.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .diagnostic-chip {
+      position: absolute;
+      display: grid;
+      gap: 2px;
+      min-width: 142px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(5, 27, 44, 0.78);
+      color: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+    }
+
+    .diagnostic-chip strong {
+      color: var(--white);
+      font-size: 0.92rem;
+    }
+
+    .diagnostic-chip small {
+      font-weight: 760;
+    }
+
+    .diagnostic-chip.one {
+      top: 28px;
+      left: 24px;
+    }
+
+    .diagnostic-chip.two {
+      right: 24px;
+      bottom: 28px;
+    }
+
+    @keyframes model-float {
+      50% {
+        transform: translate(-50%, -52%) rotateX(61deg) rotateZ(-25deg);
+      }
+    }
+
+    @keyframes leak-pulse {
+      to {
+        box-shadow: 0 0 0 22px rgba(255, 122, 0, 0);
+      }
+    }
+
+    @keyframes drop-slide {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, -28px, 52px) rotate(18deg);
+      }
+
+      14% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate3d(-74px, 82px, 52px) rotate(18deg);
+      }
+    }
+
+    @keyframes scan {
+      0%,
+      28% {
+        transform: translateX(-120%);
+      }
+
+      70%,
+      100% {
+        transform: translateX(120%);
+      }
+    }
+
+    .problem-band {
+      background: var(--white);
+    }
+
+    .problem-layout {
+      display: grid;
+      gap: 32px;
+    }
+
+    .problem-copy {
+      max-width: 620px;
+    }
+
+    .problem-points {
+      display: grid;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .problem-point {
+      padding-left: 18px;
+      border-left: 3px solid var(--orange);
+    }
+
+    .problem-point h3 {
+      color: var(--blue-night);
+      font-size: 1.12rem;
+      font-weight: 850;
+    }
+
+    .problem-point p {
+      margin-top: 4px;
+      color: var(--text-gray);
+    }
+
+    .damage-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .damage-photo {
+      position: relative;
+      min-height: 270px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #D9DEE7;
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .damage-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 270px;
+      object-fit: cover;
+      transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 700ms ease;
+    }
+
+    .damage-photo::after,
+    .service-media::after,
+    .proof-shot::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.32), transparent 62%);
+      content: "";
+      opacity: 0;
+      transform: translateX(-110%);
+      transition: transform 700ms ease, opacity 700ms ease;
+      pointer-events: none;
+    }
+
+    .damage-photo:hover img,
+    .service-media:hover img,
+    .proof-shot:hover img {
+      transform: scale(1.045);
+      filter: saturate(1.04) contrast(1.02);
+    }
+
+    .damage-photo:hover::after,
+    .service-media:hover::after,
+    .proof-shot:hover::after {
+      opacity: 1;
+      transform: translateX(110%);
+    }
+
+    .damage-photo strong {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      max-width: calc(100% - 24px);
+      padding: 7px 10px;
+      border-radius: 6px;
+      background: rgba(8, 43, 69, 0.9);
+      color: var(--white);
+      font-size: 0.82rem;
+    }
+
+    .services {
+      background: var(--off-white);
+    }
+
+    .services-list {
+      display: grid;
+      gap: 72px;
+      margin-top: 44px;
+    }
+
+    .service {
+      display: grid;
+      gap: 24px;
+      align-items: center;
+      padding-top: 34px;
+      border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    .service:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .service::before {
+      position: absolute;
+      top: 34px;
+      left: 0;
+      width: 44px;
+      height: 3px;
+      background: var(--orange);
+      content: "";
+    }
+
+    .service:first-child::before {
+      top: 0;
+    }
+
+    .service-media {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #E5EAF1;
+      box-shadow: 0 16px 40px rgba(8, 43, 69, 0.12);
+    }
+
+    .service-media img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 700ms ease;
+    }
+
+    .service-text h3 {
+      color: var(--blue-night);
+      font-size: 1.55rem;
+      line-height: 1.18;
+      font-weight: 900;
+    }
+
+    .service-text p {
+      margin-top: 12px;
+      color: var(--text-gray);
+      font-size: 1.03rem;
+    }
+
+    .benefits {
+      display: grid;
+      gap: 9px;
+      margin-top: 18px;
+      list-style: none;
+    }
+
+    .benefits li {
+      display: flex;
+      gap: 10px;
+      color: var(--blue-night);
+      font-weight: 760;
+    }
+
+    .benefits li::before {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 auto;
+      margin-top: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+      content: "";
+      box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.4);
+      animation: point-pulse 2.6s ease-out infinite;
+    }
+
+    @keyframes point-pulse {
+      60% {
+        box-shadow: 0 0 0 8px rgba(255, 122, 0, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+      }
+    }
+
+    .field-proof {
+      color: var(--white);
+      background: var(--blue-night);
+    }
+
+    .field-proof .section-title,
+    .field-proof .section-lead {
+      color: var(--white);
+    }
+
+    .field-proof .eyebrow {
+      color: #FFD5AD;
+    }
+
+    .field-proof .section-lead {
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .proof-layout {
+      display: grid;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .proof-copy {
+      max-width: 520px;
+    }
+
+    .proof-strip {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .proof-shot {
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.12);
+    }
+
+    .proof-shot img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 700ms ease;
+    }
+
+    .proof-shot span {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      background: rgba(8, 43, 69, 0.9);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .trust {
+      background: var(--white);
+    }
+
+    .trust-grid {
+      display: grid;
+      gap: 1px;
+      margin-top: 36px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+    }
+
+    .trust-item {
+      min-height: 160px;
+      padding: 24px;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-item::before {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 122, 0, 0.12), transparent 34%);
+      content: "";
+      opacity: 0;
+      transition: opacity 180ms ease;
+      pointer-events: none;
+    }
+
+    .trust-item:hover::before {
+      opacity: 1;
+    }
+
+    .trust-item h3 {
+      color: var(--blue-night);
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    .trust-item p {
+      margin-top: 9px;
+      color: var(--text-gray);
+    }
+
+    .process {
+      background: linear-gradient(180deg, var(--off-white), #EDF2F7);
+    }
+
+    .steps {
+      display: grid;
+      gap: 18px;
+      margin-top: 40px;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding: 24px 20px 24px 76px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .step:hover {
+      border-color: rgba(255, 122, 0, 0.36);
+      box-shadow: 0 18px 36px rgba(8, 43, 69, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .step::before {
+      position: absolute;
+      top: 22px;
+      left: 20px;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--blue-night);
+      color: var(--white);
+      counter-increment: step;
+      content: counter(step);
+      font-weight: 900;
+    }
+
+    .step h3 {
+      color: var(--blue-night);
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .step p {
+      margin-top: 7px;
+      color: var(--text-gray);
+    }
+
+    .zones {
+      background: var(--white);
+    }
+
+    .zones-layout {
+      display: grid;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .city-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .city-tags span {
+      padding: 9px 12px;
+      border: 1px solid rgba(8, 43, 69, 0.16);
+      border-radius: 6px;
+      background: var(--off-white);
+      color: var(--blue-night);
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .local-map {
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(15, 76, 117, 0.14), rgba(8, 43, 69, 0.05)),
+        repeating-linear-gradient(45deg, #FFFFFF 0 16px, #F1F5F9 16px 32px);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 44px rgba(8, 43, 69, 0.1);
+    }
+
+    .local-map::before,
+    .local-map::after {
+      position: absolute;
+      inset: 48px;
+      border: 1px solid rgba(15, 76, 117, 0.24);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .local-map::after {
+      inset: 90px;
+      border-color: rgba(255, 122, 0, 0.34);
+    }
+
+    .map-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      border: 4px solid var(--white);
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 8px rgba(255, 122, 0, 0.16);
+      transform: translate(-50%, -50%);
+      animation: map-pulse 2.1s ease-out infinite;
+    }
+
+    .map-label {
+      position: absolute;
+      padding: 6px 8px;
+      border-radius: 6px;
+      background: rgba(8, 43, 69, 0.9);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 850;
+      white-space: nowrap;
+      transition: transform 180ms ease, background-color 180ms ease;
+    }
+
+    .map-label:hover {
+      background: var(--orange);
+      color: var(--blue-night);
+      transform: translateY(-3px);
+    }
+
+    @keyframes map-pulse {
+      to {
+        box-shadow: 0 0 0 26px rgba(255, 122, 0, 0);
+      }
+    }
+
+    .map-label:nth-child(2) {
+      top: 28%;
+      left: 18%;
+    }
+
+    .map-label:nth-child(3) {
+      top: 20%;
+      right: 15%;
+    }
+
+    .map-label:nth-child(4) {
+      left: 14%;
+      bottom: 22%;
+    }
+
+    .map-label:nth-child(5) {
+      right: 16%;
+      bottom: 24%;
+    }
+
+    .reviews {
+      background: var(--off-white);
+    }
+
+    .review-note {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 122, 0, 0.35);
+      border-radius: 6px;
+      background: rgba(255, 122, 0, 0.08);
+      color: var(--blue-night);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .reviews-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .review {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .review:hover {
+      border-color: rgba(255, 122, 0, 0.28);
+      box-shadow: 0 16px 36px rgba(8, 43, 69, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .review strong {
+      display: block;
+      color: var(--blue-night);
+      font-size: 0.92rem;
+    }
+
+    .review p {
+      margin-top: 10px;
+      color: var(--text-gray);
+      font-style: italic;
+    }
+
+    .final-cta {
+      color: var(--white);
+      background:
+        radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 122, 0, 0.18), transparent 28%),
+        linear-gradient(90deg, rgba(8, 43, 69, 0.98), rgba(15, 76, 117, 0.96)),
+        var(--blue-night);
+    }
+
+    .final-cta .container {
+      display: grid;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .final-cta h2 {
+      max-width: 760px;
+      color: var(--white);
+      font-size: 2rem;
+      line-height: 1.14;
+      font-weight: 900;
+    }
+
+    .final-cta p {
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.05rem;
+    }
+
+    .final-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .site-footer {
+      padding: 58px 0 98px;
+      color: rgba(255, 255, 255, 0.76);
+      background: #051B2C;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 30px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand img {
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .site-footer h2,
+    .site-footer h3 {
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .site-footer p,
+    .site-footer li {
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    .site-footer ul {
+      list-style: none;
+    }
+
+    .site-footer a {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      color: var(--white);
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.34);
+      text-underline-offset: 3px;
+    }
+
+    .legal-note {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.86rem;
+    }
+
+    .mobile-actions {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 60;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 10px;
+      background: rgba(247, 248, 250, 0.96);
+      border-top: 1px solid rgba(8, 43, 69, 0.12);
+      box-shadow: 0 -14px 34px rgba(8, 43, 69, 0.14);
+      backdrop-filter: blur(14px);
+    }
+
+    .mobile-actions .btn {
+      min-height: 46px;
+      padding: 0 12px;
+      font-size: 0.91rem;
+    }
+
+    @media (min-width: 720px) {
+      .section {
+        padding: 92px 0;
+      }
+
+      .section-title {
+        font-size: 2.55rem;
+      }
+
+      .hero h1 {
+        max-width: 650px;
+        font-size: clamp(2.75rem, 6.2vw, 3.25rem);
+      }
+
+      .hero-lead {
+        font-size: 1.18rem;
+      }
+
+      .hero-proof {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .problem-layout,
+      .zones-layout,
+      .diagnostic-layout {
+        grid-template-columns: 0.9fr 1.1fr;
+      }
+
+      .damage-grid {
+        grid-template-columns: 0.9fr 1fr;
+      }
+
+      .damage-photo:first-child {
+        grid-row: span 2;
+      }
+
+      .service {
+        grid-template-columns: minmax(260px, 0.88fr) minmax(0, 1.12fr);
+        gap: 46px;
+      }
+
+      .service:nth-child(2) {
+        width: min(1040px, 100%);
+        margin-left: auto;
+      }
+
+      .service:nth-child(3) {
+        width: min(980px, 100%);
+      }
+
+      .service:nth-child(4) {
+        width: min(1080px, 100%);
+        margin-left: 6%;
+      }
+
+      .service:nth-child(even) .service-media {
+        order: 2;
+      }
+
+      .proof-layout {
+        grid-template-columns: 0.8fr 1.2fr;
+      }
+
+      .proof-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .trust-grid,
+      .steps,
+      .reviews-grid,
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .final-cta .container {
+        grid-template-columns: 1fr auto;
+      }
+
+      .final-cta h2 {
+        font-size: 2.4rem;
+      }
+
+      .site-footer {
+        padding-bottom: 44px;
+      }
+
+      .mobile-actions {
+        display: none;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .hero h1 {
+        font-size: 3.55rem;
+      }
+
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+        gap: clamp(32px, 4vw, 56px);
+      }
+
+      .hero-call-card {
+        display: block;
+      }
+
+      .nav-list {
+        display: flex;
+      }
+
+      .header-call {
+        display: inline-flex;
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+
+      .mobile-panel {
+        display: none !important;
+      }
+    }
+
+    @media (min-width: 1120px) {
+      .hero h1 {
+        font-size: 4.15rem;
+      }
+    }
+
+    @media (max-width: 719px) {
+      body {
+        padding-bottom: 72px;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .diagnostic-stage {
+        min-height: 360px;
+      }
+
+      .roof-model {
+        width: 260px;
+        height: 190px;
+      }
+
+      .diagnostic-chip {
+        min-width: 126px;
+        font-size: 0.82rem;
+      }
+
+      .diagnostic-chip.one {
+        top: 18px;
+        left: 16px;
+      }
+
+      .diagnostic-chip.two {
+        right: 16px;
+        bottom: 18px;
+      }
+
+      .hero-media {
+        position: relative;
+        inset: auto;
+        height: 240px;
+      }
+
+      .hero-media::before {
+        background: linear-gradient(0deg, var(--blue-night), rgba(8, 43, 69, 0.08) 72%);
+      }
+
+      .hero-inner {
+        min-height: auto;
+        padding: 46px 0 92px;
+      }
+
+      .hero h1 {
+        font-size: 2.06rem;
+      }
+
+      .hero-lead {
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        margin-top: 22px;
+      }
+
+      .hero-status {
+        display: none;
+      }
+
+      .hero-actions,
+      .final-actions {
+        display: grid;
+      }
+
+      .hero-actions .btn,
+      .final-actions .btn {
+        width: 100%;
+      }
+
+      .section-title,
+      .final-cta h2 {
+        font-size: 1.82rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+
+      .js [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
+
+      .tilt,
+      .hero-media img,
+      .hero-copy {
+        transform: none !important;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "DFT - Dépannage Fuite Toiture",
+      "url": "https://dft45.net/",
+      "image": "https://dft45.net/assets/images/hero-intervention.jpg",
+      "founder": "Touzani Jamal",
+      "telephone": "+33688046639",
+      "email": "touzani.jamal@dft45.net",
+      "description": "Dépannage fuite toiture, recherche de fuite, mise hors d'eau, bâchage, réparation toiture, étanchéité et zinguerie autour d'Orléans.",
+      "areaServed": ["Orléans", "Fleury-les-Aubrais", "Saran", "Saint-Jean-de-Braye", "Olivet", "Saint-Cyr-en-Val", "Loiret"]
+    }
+  </script>
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#accueil" aria-label="DFT - retour à l'accueil">
+        <img src="assets/logo/logo-dft.png" width="88" height="88" alt="Logo DFT" decoding="async">
+        <span class="brand-text">
+          <span class="brand-name">DFT</span>
+          <span class="brand-sub">Dépannage Fuite Toiture</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#services">Services</a></li>
+          <li><a class="nav-link" href="#terrain">Terrain</a></li>
+          <li><a class="nav-link" href="#confiance">Confiance</a></li>
+          <li><a class="nav-link" href="#zones">Zones</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn-primary header-call" href="tel:+33688046639">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a>
+        <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
+          <span aria-hidden="true"></span>
+        </button>
+      </nav>
+    </div>
+    <div class="mobile-panel" id="menu-mobile">
+      <div class="container">
+        <a href="#services">Services</a>
+        <a href="#terrain">Preuves terrain</a>
+        <a href="#confiance">Confiance</a>
+        <a href="#zones">Zones d'intervention</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary" href="tel:+33688046639">Appeler&nbsp;DFT</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="accueil">
+    <section class="hero" aria-labelledby="hero-title" data-section>
+      <div class="hero-media" aria-hidden="true">
+        <img src="assets/images/hero-intervention.webp" width="540" height="720" alt="" fetchpriority="high" decoding="async">
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-copy" data-reveal>
+          <p class="hero-kicker">Dépannage toiture dans le Loiret</p>
+          <h1 id="hero-title">Fuite de toiture ? Intervention rapide avant que les dégâts s’aggravent.</h1>
+          <p class="hero-lead">DFT localise l’origine des infiltrations, sécurise votre toiture et réalise les réparations nécessaires avec précision.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:+33688046639">Appeler&nbsp;maintenant</a>
+            <a class="btn btn-secondary" href="mailto:touzani.jamal@dft45.net?subject=Demande%20de%20diagnostic%20toiture%20DFT">Demander un diagnostic</a>
+          </div>
+          <div class="hero-status">
+            <strong>Priorité : stopper l’aggravation</strong>
+            Recherche, protection, réparation.
+          </div>
+          <div class="hero-proof">
+            <span>Recherche de fuite</span>
+            <span>Mise hors d’eau</span>
+            <span>Bâchage</span>
+            <span>Réparation toiture</span>
+          </div>
+        </div>
+        <aside class="hero-call-card tilt" data-tilt data-reveal>
+          <span class="call-label">Contact direct</span>
+          <a class="hero-phone" href="tel:+33688046639">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a>
+          <p>Touzani Jamal écoute la situation, identifie les signes visibles et vous oriente vers la première action utile.</p>
+          <small>Évaluation claire de l’urgence selon la situation.</small>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section diagnostic-3d" aria-labelledby="diagnostic-title">
+      <div class="container diagnostic-layout">
+        <div class="diagnostic-copy" data-reveal>
+          <p class="eyebrow">Diagnostic visuel</p>
+          <h2 class="section-title" id="diagnostic-title">Une expérience plus immersive, au service d’un message simple : trouver l’entrée d’eau.</h2>
+          <p class="section-lead">Le parcours met en scène la logique d’intervention : observation, localisation, contrôle par fumigène lorsque le contexte s’y prête, protection, réparation.</p>
+          <ul class="diagnostic-list">
+            <li><span>1</span>Repérer les traces et les points sensibles.</li>
+            <li><span>2</span>Comprendre le cheminement de l’eau.</li>
+            <li><span>3</span>Agir là où l’intervention est utile.</li>
+          </ul>
+        </div>
+        <div class="diagnostic-stage tilt" data-tilt data-reveal aria-hidden="true">
+          <div class="scan-line" aria-hidden="true"></div>
+          <div class="roof-model" aria-hidden="true">
+            <div class="roof-plane"></div>
+            <div class="roof-gutter"></div>
+            <div class="leak-zone"></div>
+            <div class="water-drop"></div>
+          </div>
+          <div class="diagnostic-chip one">
+            <strong>Point sensible</strong>
+            <small>Contrôle ciblé</small>
+          </div>
+          <div class="diagnostic-chip two">
+            <strong>Mise hors d’eau</strong>
+            <small>Protection prioritaire</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section problem-band" aria-labelledby="problem-title">
+      <div class="container problem-layout">
+        <div class="problem-copy" data-reveal>
+          <p class="eyebrow">Infiltration intérieure</p>
+          <h2 class="section-title" id="problem-title">Une infiltration invisible peut coûter très cher.</h2>
+          <p class="section-lead">Une trace discrète peut cacher une arrivée d’eau plus ancienne. L’objectif est de trouver l’origine, pas seulement de masquer le symptôme.</p>
+          <div class="problem-points">
+            <div class="problem-point">
+              <h3>Plafond taché</h3>
+              <p>Les auréoles et coulures signalent souvent une humidité qui progresse au-dessus de la pièce.</p>
+            </div>
+            <div class="problem-point">
+              <h3>Isolation humide</h3>
+              <p>L’eau dégrade la performance thermique et peut créer des odeurs ou moisissures.</p>
+            </div>
+            <div class="problem-point">
+              <h3>Structure fragilisée</h3>
+              <p>Plus la fuite reste active, plus la réparation peut devenir lourde pour la toiture et l’intérieur.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="damage-grid">
+          <figure class="damage-photo tilt" data-tilt data-reveal>
+            <img src="assets/images/degat-interieur.webp" width="540" height="720" alt="Dégât d'eau visible au-dessus d'une fenêtre" loading="lazy" decoding="async">
+            <strong>Dégât intérieur</strong>
+          </figure>
+          <figure class="damage-photo tilt" data-tilt data-reveal>
+            <img src="assets/images/infiltration-plafond.webp" width="540" height="720" alt="Trace d'humidité au plafond" loading="lazy" decoding="async">
+            <strong>Plafond taché</strong>
+          </figure>
+          <figure class="damage-photo tilt" data-tilt data-reveal>
+            <img src="assets/images/infiltration-fenetre.webp" width="540" height="720" alt="Infiltration autour d'une fenêtre" loading="lazy" decoding="async">
+            <strong>Infiltration fenêtre</strong>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services" aria-labelledby="services-title" data-section>
+      <div class="container">
+        <div data-reveal>
+          <p class="eyebrow">Services DFT</p>
+          <h2 class="section-title" id="services-title">Une intervention ciblée pour limiter les dégâts et réparer proprement.</h2>
+          <p class="section-lead">DFT intervient sur la recherche de fuite, la protection provisoire et les réparations nécessaires en toiture, étanchéité et zinguerie.</p>
+        </div>
+
+        <div class="services-list">
+          <article class="service" data-reveal>
+            <div class="service-media tilt" data-tilt>
+              <img src="assets/images/recherche-fumigene.webp" width="540" height="720" alt="Recherche de fuite par fumigène sur toiture terrasse" loading="lazy" decoding="async">
+            </div>
+            <div class="service-text">
+              <h3>Recherche de fuite</h3>
+              <p>Identifier l’origine réelle de l’infiltration avant d’engager les travaux, avec une méthode adaptée au support.</p>
+              <ul class="benefits">
+                <li>Inspection méthodique des points sensibles</li>
+                <li>Contrôle par fumigène lorsque la configuration s’y prête</li>
+                <li>Intervention orientée réparation utile</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service" data-reveal>
+            <div class="service-media tilt" data-tilt>
+              <img src="assets/images/toiture-terrasse.webp" width="540" height="720" alt="Toiture terrasse en cours d'inspection" loading="lazy" decoding="async">
+            </div>
+            <div class="service-text">
+              <h3>Mise hors d’eau</h3>
+              <p>Limiter rapidement l’entrée d’eau pour protéger les pièces touchées.</p>
+              <ul class="benefits">
+                <li>Sécurisation des zones exposées</li>
+                <li>Protection provisoire adaptée au contexte</li>
+                <li>Conseils pour éviter l’aggravation</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service" data-reveal>
+            <div class="service-media tilt" data-tilt>
+              <img src="assets/images/infiltration-fenetre.webp" width="540" height="720" alt="Dégât d'infiltration près d'une ouverture" loading="lazy" decoding="async">
+            </div>
+            <div class="service-text">
+              <h3>Bâchage d’urgence</h3>
+              <p>Protéger temporairement une toiture abîmée quand la réparation définitive nécessite une étape préparatoire.</p>
+              <ul class="benefits">
+                <li>Priorité à la protection de l’intérieur</li>
+                <li>Adaptation à la toiture et à la météo</li>
+                <li>Préparation de la réparation durable</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service" data-reveal>
+            <div class="service-media tilt" data-tilt>
+              <img src="assets/images/inspection-camera.webp" width="540" height="720" alt="Caméra d'inspection utilisée pour localiser une fuite" loading="lazy" decoding="async">
+            </div>
+            <div class="service-text">
+              <h3>Réparation toiture &amp; étanchéité</h3>
+              <p>Traiter la cause de la fuite avec une intervention adaptée au support et au point d’entrée.</p>
+              <ul class="benefits">
+                <li>Réparation toiture et points singuliers</li>
+                <li>Étanchéité et reprises localisées</li>
+                <li>Zinguerie selon le besoin constaté</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section field-proof" id="terrain" aria-labelledby="terrain-title" data-section>
+      <div class="container proof-layout">
+        <div class="proof-copy" data-reveal>
+          <p class="eyebrow">Preuves terrain</p>
+          <h2 class="section-title" id="terrain-title">Des constats visibles, une recherche méthodique, une intervention ciblée.</h2>
+          <p class="section-lead">Les photos fournies montrent des situations réelles : inspection, toiture terrasse, traces d’infiltration intérieure. Le site met en avant ce qui est vérifiable.</p>
+        </div>
+        <div class="proof-strip">
+          <figure class="proof-shot tilt" data-tilt data-reveal>
+            <img src="assets/images/inspection-camera.webp" width="540" height="720" alt="Écran de caméra d'inspection" loading="lazy" decoding="async">
+            <span>Inspection caméra</span>
+          </figure>
+          <figure class="proof-shot tilt" data-tilt data-reveal>
+            <img src="assets/images/recherche-fumigene.webp" width="540" height="720" alt="Recherche de fuite par fumigène sur toiture terrasse" loading="lazy" decoding="async">
+            <span>Recherche par fumigène</span>
+          </figure>
+          <figure class="proof-shot tilt" data-tilt data-reveal>
+            <img src="assets/images/infiltration-plafond.webp" width="540" height="720" alt="Trace d'infiltration au plafond" loading="lazy" decoding="async">
+            <span>Infiltration intérieure</span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section trust" id="confiance" aria-labelledby="trust-title" data-section>
+      <div class="container">
+        <div data-reveal>
+          <p class="eyebrow">Confiance locale</p>
+          <h2 class="section-title" id="trust-title">Pourquoi DFT inspire confiance ?</h2>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-item tilt" data-tilt data-reveal>
+            <h3>Réactivité</h3>
+            <p>Un échange direct pour comprendre la situation et prioriser les dégâts visibles.</p>
+          </article>
+          <article class="trust-item tilt" data-tilt data-reveal>
+            <h3>Précision</h3>
+            <p>La recherche se concentre sur l’origine de la fuite pour éviter les interventions inutiles.</p>
+          </article>
+          <article class="trust-item tilt" data-tilt data-reveal>
+            <h3>Expérience terrain</h3>
+            <p>Des interventions sur toitures, terrasses, infiltrations, étanchéité et zinguerie.</p>
+          </article>
+          <article class="trust-item tilt" data-tilt data-reveal>
+            <h3>Accompagnement clair</h3>
+            <p>Des explications simples sur ce qui est constaté, ce qui est urgent et ce qui peut attendre.</p>
+          </article>
+          <article class="trust-item tilt" data-tilt data-reveal>
+            <h3>Intervention locale</h3>
+            <p>DFT intervient autour d’Orléans, dans les communes voisines et dans le Loiret.</p>
+          </article>
+          <article class="trust-item tilt" data-tilt data-reveal>
+            <h3>Devis / diagnostic clair</h3>
+            <p>Une approche sobre, sans promesse artificielle ni mention non justifiée.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process" aria-labelledby="process-title">
+      <div class="container">
+        <div data-reveal>
+          <p class="eyebrow">Processus</p>
+          <h2 class="section-title" id="process-title">Une intervention en 4 étapes simples.</h2>
+        </div>
+        <div class="steps">
+          <article class="step" data-reveal>
+            <h3>Vous appelez</h3>
+            <p>Vous décrivez les traces, la zone touchée et le contexte de l’infiltration.</p>
+          </article>
+          <article class="step" data-reveal>
+            <h3>On évalue l’urgence</h3>
+            <p>DFT vous indique les premières précautions et organise l’intervention selon la situation.</p>
+          </article>
+          <article class="step" data-reveal>
+            <h3>On recherche l’origine</h3>
+            <p>La toiture et les points sensibles sont inspectés pour localiser l’entrée d’eau.</p>
+          </article>
+          <article class="step" data-reveal>
+            <h3>On sécurise et répare</h3>
+            <p>La toiture est protégée puis réparée selon ce qui a été constaté sur place.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section zones" id="zones" aria-labelledby="zones-title" data-section>
+      <div class="container zones-layout">
+        <div data-reveal>
+          <p class="eyebrow">Zone d’intervention</p>
+          <h2 class="section-title" id="zones-title">Intervention toiture dans le Loiret</h2>
+          <p class="section-lead">DFT intervient pour les fuites de toiture, les infiltrations et la mise hors d’eau à Orléans et dans les communes proches.</p>
+          <div class="city-tags">
+            <span>Orléans</span>
+            <span>Fleury-les-Aubrais</span>
+            <span>Saran</span>
+            <span>Saint-Jean-de-Braye</span>
+            <span>Olivet</span>
+            <span>Saint-Cyr-en-Val</span>
+            <span>Loiret</span>
+          </div>
+        </div>
+        <div class="local-map tilt" data-tilt data-reveal aria-hidden="true">
+          <span class="map-center" aria-hidden="true"></span>
+          <span class="map-label">Saran</span>
+          <span class="map-label">Fleury-les-Aubrais</span>
+          <span class="map-label">Olivet</span>
+          <span class="map-label">Saint-Jean-de-Braye</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reviews" aria-labelledby="reviews-title">
+      <div class="container">
+        <div data-reveal>
+          <p class="eyebrow">Avis clients</p>
+          <h2 class="section-title" id="reviews-title">Retours clients</h2>
+          <p class="review-note">Exemples de retours à remplacer par les vrais avis Google.</p>
+        </div>
+        <div class="reviews-grid">
+          <article class="review" data-reveal>
+            <strong>Exemple à remplacer</strong>
+            <p>“Recherche sérieuse de la fuite, explications claires et intervention soignée.”</p>
+          </article>
+          <article class="review" data-reveal>
+            <strong>Exemple à remplacer</strong>
+            <p>“DFT a sécurisé la toiture et nous a expliqué les réparations nécessaires.”</p>
+          </article>
+          <article class="review" data-reveal>
+            <strong>Exemple à remplacer</strong>
+            <p>“Contact direct, diagnostic compréhensible et travail propre sur la zone touchée.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta" aria-labelledby="cta-title">
+      <div class="container" data-reveal>
+        <div>
+          <h2 id="cta-title">Vous voyez une trace d’humidité ? Faites vérifier avant que ça s’aggrave.</h2>
+          <p>Réponse claire, intervention rapide, toiture sécurisée.</p>
+        </div>
+        <div class="final-actions">
+          <a class="btn btn-primary" href="tel:+33688046639">Appeler&nbsp;DFT</a>
+          <a class="btn btn-secondary" href="mailto:touzani.jamal@dft45.net?subject=Demande%20de%20diagnostic%20toiture%20DFT">Demander un diagnostic</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="assets/logo/logo-dft.png" width="88" height="88" alt="Logo DFT" decoding="async">
+            <div>
+              <h2>DFT</h2>
+              <p>Dépannage Fuite Toiture</p>
+            </div>
+          </div>
+          <p>Touzani Jamal</p>
+          <p>SIREN : 100282742</p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>Téléphone : <a href="tel:+33688046639">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a></p>
+          <p>Email : <a href="mailto:touzani.jamal@dft45.net">touzani.jamal@dft45.net</a></p>
+          <p>Assurance décennale : à renseigner / vérifier</p>
+        </div>
+        <div>
+          <h3>Services</h3>
+          <ul>
+            <li>Recherche de fuite</li>
+            <li>Mise hors d’eau</li>
+            <li>Bâchage d’urgence</li>
+            <li>Réparation toiture</li>
+            <li>Étanchéité et zinguerie</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Zones</h3>
+          <ul>
+            <li>Orléans</li>
+            <li>Fleury-les-Aubrais</li>
+            <li>Saran</li>
+            <li>Saint-Jean-de-Braye</li>
+            <li>Olivet</li>
+            <li>Saint-Cyr-en-Val</li>
+            <li>Loiret</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Mentions légales</h3>
+          <p>Entreprise : DFT / Dépannage Fuite Toiture</p>
+          <p>Responsable : Touzani Jamal</p>
+          <p>Photos : interventions et constats fournis par l’entreprise.</p>
+        </div>
+      </div>
+      <p class="legal-note">Les délais d’intervention dépendent de la situation, de la localisation et des disponibilités. Aucune certification, garantie horaire ou avis client réel n’est affiché sans justificatif fourni.</p>
+    </div>
+  </footer>
+
+  <nav class="mobile-actions" aria-label="Actions rapides">
+    <a class="btn btn-primary" href="tel:+33688046639">Appeler</a>
+    <a class="btn btn-dark" href="mailto:touzani.jamal@dft45.net?subject=Demande%20de%20diagnostic%20toiture%20DFT">Diagnostic</a>
+  </nav>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector(".nav-toggle");
+      const panel = document.querySelector("#menu-mobile");
+      const links = panel.querySelectorAll("a");
+      const header = document.querySelector(".site-header");
+      const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function setMenu(open) {
+        toggle.setAttribute("aria-expanded", String(open));
+        panel.classList.toggle("open", open);
+        document.body.classList.toggle("menu-open", open);
+      }
+
+      toggle.addEventListener("click", function () {
+        setMenu(toggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      links.forEach(function (link) {
+        link.addEventListener("click", function () {
+          setMenu(false);
+        });
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          setMenu(false);
+        }
+      });
+
+      function updateScrollState() {
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, window.scrollY / max));
+        document.documentElement.style.setProperty("--scroll", progress.toFixed(4));
+        document.documentElement.style.setProperty("--hero-y", Math.min(90, window.scrollY * 0.08).toFixed(1) + "px");
+        header.classList.toggle("is-scrolled", window.scrollY > 18);
+      }
+
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          updateScrollState();
+          revealVisible();
+          ticking = false;
+        });
+      }
+
+      updateScrollState();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      const revealItems = document.querySelectorAll("[data-reveal]");
+      function revealVisible() {
+        const topLimit = window.innerHeight * 1.45;
+        const bottomLimit = window.innerHeight * -0.28;
+        revealItems.forEach(function (item) {
+          if (item.classList.contains("is-visible")) return;
+          const rect = item.getBoundingClientRect();
+          if (rect.top < topLimit && rect.bottom > bottomLimit) {
+            item.classList.add("is-visible");
+          }
+        });
+      }
+
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        revealItems.forEach(function (item) {
+          item.classList.add("is-visible");
+        });
+      } else {
+        const revealObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+
+        revealItems.forEach(function (item) {
+          revealObserver.observe(item);
+        });
+      }
+      revealVisible();
+      window.addEventListener("resize", revealVisible);
+      window.addEventListener("load", revealVisible);
+
+      if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting || !entry.target.id) return;
+            navLinks.forEach(function (link) {
+              link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
+            });
+          });
+        }, { threshold: 0.45 });
+
+        document.querySelectorAll("section[id]").forEach(function (section) {
+          sectionObserver.observe(section);
+        });
+      }
+
+      function setPointerVars(element, event) {
+        const rect = element.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        element.style.setProperty("--mx", (x / rect.width * 100).toFixed(2) + "%");
+        element.style.setProperty("--my", (y / rect.height * 100).toFixed(2) + "%");
+        return { rect, x, y };
+      }
+
+      if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+        document.querySelectorAll("[data-tilt]").forEach(function (element) {
+          element.addEventListener("pointermove", function (event) {
+            const data = setPointerVars(element, event);
+            const ry = ((data.x / data.rect.width) - 0.5) * 8;
+            const rx = ((data.y / data.rect.height) - 0.5) * -8;
+            element.style.setProperty("--rx", rx.toFixed(2) + "deg");
+            element.style.setProperty("--ry", ry.toFixed(2) + "deg");
+          });
+
+          element.addEventListener("pointerleave", function () {
+            element.style.removeProperty("--rx");
+            element.style.removeProperty("--ry");
+          });
+        });
+
+        document.querySelectorAll(".final-cta, .trust-item").forEach(function (element) {
+          element.addEventListener("pointermove", function (event) {
+            setPointerVars(element, event);
+          });
+        });
+      }
+
+      document.querySelectorAll(".btn").forEach(function (button) {
+        button.addEventListener("click", function (event) {
+          const rect = button.getBoundingClientRect();
+          button.style.setProperty("--ripple-x", (event.clientX - rect.left) + "px");
+          button.style.setProperty("--ripple-y", (event.clientY - rect.top) + "px");
+          button.classList.remove("ripple");
+          void button.offsetWidth;
+          button.classList.add("ripple");
+        });
+
+        button.addEventListener("animationend", function () {
+          button.classList.remove("ripple");
+        });
+      });
+    }());
+  </script>
+</body>
+</html>

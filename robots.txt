@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dft45.net/sitemap.xml
