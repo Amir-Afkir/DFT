@@ -51,7 +51,8 @@
       overflow-x: clip;
     }
 
-    body.menu-open {
+    body.menu-open,
+    body.sheet-open {
       overflow: hidden;
     }
 
@@ -130,8 +131,7 @@
 
     .section {
       padding: 72px 0;
-      content-visibility: auto;
-      contain-intrinsic-size: auto 760px;
+      scroll-margin-top: 88px;
     }
 
     .eyebrow {
@@ -222,7 +222,10 @@
 
     .btn:focus-visible,
     .nav-toggle:focus-visible,
-    .nav-link:focus-visible {
+    .nav-link:focus-visible,
+    .diagnostic-form input:focus-visible,
+    .diagnostic-form textarea:focus-visible,
+    .diagnostic-form button:focus-visible {
       outline: 3px solid rgba(255, 122, 0, 0.42);
       outline-offset: 3px;
     }
@@ -1387,6 +1390,595 @@
       bottom: 24%;
     }
 
+    .diagnostic-request {
+      background:
+        linear-gradient(180deg, var(--white), #EEF3F8);
+    }
+
+    .diagnostic-shell {
+      display: grid;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .diagnostic-intro {
+      display: grid;
+      align-content: start;
+      gap: 22px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(8, 43, 69, 0.97), rgba(15, 76, 117, 0.94)),
+        var(--blue-night);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .diagnostic-intro::after {
+      position: absolute;
+      right: -90px;
+      bottom: -110px;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .diagnostic-intro .eyebrow {
+      color: #FFD5AD;
+    }
+
+    .diagnostic-intro h2 {
+      max-width: 520px;
+      color: var(--white);
+      font-size: 2.15rem;
+      line-height: 1.08;
+      font-weight: 900;
+    }
+
+    .diagnostic-intro p {
+      max-width: 520px;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .diagnostic-points {
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+      list-style: none;
+    }
+
+    .diagnostic-points li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 760;
+    }
+
+    .diagnostic-points li::before {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 auto;
+      margin-top: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+      content: "";
+    }
+
+    .diagnostic-panel {
+      border: 1px solid rgba(8, 43, 69, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 22px 58px rgba(8, 43, 69, 0.14);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .diagnostic-form {
+      display: grid;
+      gap: 0;
+    }
+
+    .diagnostic-form-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid rgba(8, 43, 69, 0.1);
+    }
+
+    .diagnostic-form-header strong {
+      color: var(--blue-night);
+      font-size: 0.96rem;
+      font-weight: 900;
+    }
+
+    .diagnostic-progress {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      width: 116px;
+      height: 6px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #D7E1EA;
+    }
+
+    .diagnostic-progress span {
+      background: var(--orange);
+      transform: scaleX(0.46);
+      transform-origin: left center;
+      transition: transform 260ms ease;
+    }
+
+    .diagnostic-form[data-step="2"] .diagnostic-progress span {
+      transform: scaleX(1);
+    }
+
+    .diagnostic-step {
+      display: none;
+      padding: 24px 22px 22px;
+    }
+
+    .diagnostic-step.is-active {
+      display: grid;
+      gap: 20px;
+      animation: form-step-in 260ms ease;
+    }
+
+    @keyframes form-step-in {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .diagnostic-step h3 {
+      color: var(--blue-night);
+      font-size: 1.45rem;
+      line-height: 1.12;
+      font-weight: 900;
+    }
+
+    .diagnostic-step-lead {
+      margin-top: -10px;
+      color: var(--text-gray);
+      font-size: 0.98rem;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      border: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .choice-grid legend {
+      grid-column: 1 / -1;
+      margin-bottom: 2px;
+      color: var(--blue-night);
+      font-size: 0.86rem;
+      font-weight: 860;
+    }
+
+    .choice-option {
+      position: relative;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      padding: 12px 13px;
+      border: 1px solid rgba(8, 43, 69, 0.16);
+      border-radius: 8px;
+      background: rgba(247, 248, 250, 0.78);
+      color: var(--blue-night);
+      font-size: 0.93rem;
+      font-weight: 820;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .choice-option:hover {
+      border-color: rgba(255, 122, 0, 0.44);
+      background: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .choice-option input {
+      position: absolute;
+      opacity: 0;
+      inset: 0;
+      cursor: pointer;
+    }
+
+    .choice-option span {
+      position: relative;
+      display: flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .choice-option span::before {
+      width: 12px;
+      height: 12px;
+      flex: 0 0 auto;
+      border: 2px solid rgba(15, 76, 117, 0.5);
+      border-radius: 50%;
+      content: "";
+      transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .choice-option:has(input:focus-visible) {
+      outline: 3px solid rgba(255, 122, 0, 0.42);
+      outline-offset: 3px;
+    }
+
+    .choice-option:has(input:checked) {
+      border-color: rgba(255, 122, 0, 0.66);
+      background: rgba(255, 122, 0, 0.1);
+      box-shadow: 0 12px 28px rgba(255, 122, 0, 0.12);
+    }
+
+    .choice-option:has(input:checked) span::before {
+      border-color: var(--orange);
+      background: var(--orange);
+      box-shadow: inset 0 0 0 3px var(--white);
+    }
+
+    .field-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field-grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      color: var(--blue-night);
+      font-size: 0.86rem;
+      font-weight: 860;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid rgba(8, 43, 69, 0.16);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--black-soft);
+      font: inherit;
+      font-size: 1rem;
+      padding: 13px 14px;
+      box-shadow: 0 1px 0 rgba(8, 43, 69, 0.04);
+      transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .field textarea {
+      min-height: 104px;
+      resize: vertical;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #7A8797;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: rgba(255, 122, 0, 0.72);
+      box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.12);
+    }
+
+    .address-combobox {
+      position: relative;
+    }
+
+    .address-combobox input {
+      padding-right: 42px;
+    }
+
+    .address-combobox::after {
+      content: "";
+      position: absolute;
+      right: 16px;
+      top: 26px;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid rgba(8, 43, 69, 0.38);
+      border-bottom: 2px solid rgba(8, 43, 69, 0.38);
+      pointer-events: none;
+      transform: translateY(-50%) rotate(45deg);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .address-combobox.is-open::after {
+      border-color: var(--orange);
+      transform: translateY(-20%) rotate(225deg);
+    }
+
+    .address-suggestions {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      left: 0;
+      z-index: 35;
+      display: grid;
+      gap: 4px;
+      max-height: min(260px, 42vh);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 7px;
+      border: 1px solid rgba(8, 43, 69, 0.14);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 20px 44px rgba(8, 43, 69, 0.16);
+      backdrop-filter: blur(12px);
+    }
+
+    .address-suggestions[hidden] {
+      display: none;
+    }
+
+    .address-suggestion {
+      display: grid;
+      gap: 2px;
+      padding: 11px 12px;
+      border-radius: 8px;
+      color: var(--black-soft);
+      cursor: pointer;
+      transition: background-color 160ms ease, color 160ms ease;
+    }
+
+    .address-suggestion:hover,
+    .address-suggestion.is-active {
+      background: rgba(255, 122, 0, 0.1);
+      color: var(--blue-night);
+    }
+
+    .address-suggestion strong {
+      font-size: 0.94rem;
+      font-weight: 860;
+      line-height: 1.25;
+    }
+
+    .address-suggestion small {
+      color: var(--text-gray);
+      font-size: 0.78rem;
+      line-height: 1.3;
+    }
+
+    .field.is-valid input,
+    .field.is-valid textarea {
+      border-color: rgba(15, 76, 117, 0.38);
+    }
+
+    .field.is-invalid input,
+    .field.is-invalid textarea {
+      border-color: #B42318;
+      box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.08);
+    }
+
+    .field-help,
+    .diagnostic-error {
+      color: var(--text-gray);
+      font-size: 0.84rem;
+    }
+
+    .diagnostic-error {
+      min-height: 18px;
+      color: #B42318;
+      font-weight: 760;
+    }
+
+    .diagnostic-reassurance {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 13px;
+      border: 1px solid rgba(15, 76, 117, 0.16);
+      border-radius: 8px;
+      background: rgba(15, 76, 117, 0.06);
+      color: var(--blue-night);
+      font-size: 0.92rem;
+      font-weight: 780;
+    }
+
+    .diagnostic-reassurance::before {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      content: "";
+    }
+
+    .diagnostic-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 4px;
+    }
+
+    .diagnostic-back,
+    .sheet-close {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(8, 43, 69, 0.16);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--blue-night);
+      font: inherit;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .diagnostic-back {
+      padding: 0 16px;
+    }
+
+    .diagnostic-back:hover,
+    .sheet-close:hover {
+      border-color: rgba(15, 76, 117, 0.35);
+      background: var(--off-white);
+      transform: translateY(-1px);
+    }
+
+    .consent {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: var(--text-gray);
+      font-size: 0.9rem;
+    }
+
+    .consent input {
+      width: 20px;
+      height: 20px;
+      margin: 2px 0 0;
+      accent-color: var(--orange);
+    }
+
+    .diagnostic-success {
+      display: none;
+      padding: 20px 22px 24px;
+      border-top: 1px solid rgba(8, 43, 69, 0.1);
+      background: rgba(15, 76, 117, 0.06);
+      color: var(--blue-night);
+    }
+
+    .diagnostic-success.is-visible {
+      display: block;
+    }
+
+    .diagnostic-success strong {
+      display: block;
+      font-size: 1.06rem;
+      font-weight: 900;
+    }
+
+    .diagnostic-success p {
+      margin-top: 6px;
+      color: var(--text-gray);
+    }
+
+    .diagnostic-sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(5, 27, 44, 0.42);
+      opacity: 0;
+      transition: opacity 240ms ease;
+    }
+
+    .diagnostic-sheet {
+      position: fixed;
+      inset: auto 0 0;
+      z-index: 90;
+      padding: 10px;
+      transform: translateY(104%);
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .diagnostic-sheet-backdrop.is-open {
+      opacity: 1;
+    }
+
+    .diagnostic-sheet.is-open {
+      transform: translateY(0);
+    }
+
+    .sheet-panel {
+      max-height: calc(100vh - 28px);
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 12px 12px 8px 8px;
+      background: rgba(247, 248, 250, 0.98);
+      box-shadow: 0 -24px 70px rgba(5, 27, 44, 0.28);
+      backdrop-filter: blur(18px);
+    }
+
+    .sheet-form-slot .diagnostic-panel {
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .sheet-form-slot .diagnostic-form-header {
+      padding: 14px 16px 12px;
+    }
+
+    .sheet-form-slot .diagnostic-step {
+      padding: 20px 16px 18px;
+    }
+
+    .sheet-form-slot .diagnostic-success {
+      padding: 18px 16px 20px;
+    }
+
+    .sheet-grip {
+      width: 42px;
+      height: 4px;
+      margin: 10px auto 4px;
+      border-radius: 999px;
+      background: rgba(8, 43, 69, 0.22);
+    }
+
+    .sheet-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 16px 6px;
+    }
+
+    .sheet-top h2 {
+      color: var(--blue-night);
+      font-size: 1.25rem;
+      line-height: 1.12;
+      font-weight: 900;
+    }
+
+    .sheet-top p {
+      margin-top: 5px;
+      color: var(--text-gray);
+      font-size: 0.9rem;
+    }
+
+    .sheet-close {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      padding: 0;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
     .reviews {
       background: var(--off-white);
     }
@@ -1578,6 +2170,14 @@
         grid-template-columns: 0.9fr 1.1fr;
       }
 
+      .diagnostic-shell {
+        grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+      }
+
+      .diagnostic-intro {
+        padding: 34px;
+      }
+
       .damage-grid {
         grid-template-columns: 0.9fr 1fr;
       }
@@ -1715,6 +2315,111 @@
         bottom: 18px;
       }
 
+      .diagnostic-request {
+        display: none;
+      }
+
+      .problem-band,
+      .services,
+      .field-proof,
+      .trust,
+      .process,
+      .zones,
+      .reviews,
+      .final-cta {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 760px;
+      }
+
+      .choice-grid,
+      .field-grid.two {
+        grid-template-columns: 1fr;
+      }
+
+      .diagnostic-actions {
+        display: grid;
+      }
+
+      .diagnostic-actions .btn,
+      .diagnostic-actions .diagnostic-back {
+        width: 100%;
+      }
+
+      .diagnostic-sheet {
+        padding: 0 10px 10px;
+      }
+
+      .sheet-panel {
+        height: min(86vh, 760px);
+        max-height: calc(100vh - 18px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 16px 16px 8px 8px;
+      }
+
+      .sheet-grip,
+      .sheet-top {
+        flex: 0 0 auto;
+      }
+
+      .sheet-form-slot {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+      }
+
+      .sheet-form-slot .diagnostic-panel,
+      .sheet-form-slot .diagnostic-form {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sheet-form-slot .diagnostic-form-header {
+        flex: 0 0 auto;
+      }
+
+      .sheet-form-slot .diagnostic-step.is-active {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0;
+      }
+
+      .sheet-form-slot .diagnostic-step h3 {
+        font-size: 1.35rem;
+      }
+
+      .sheet-form-slot .diagnostic-actions {
+        position: sticky;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+        margin: auto -16px 0;
+        padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+        border-top: 1px solid rgba(8, 43, 69, 0.1);
+        background: linear-gradient(180deg, rgba(247, 248, 250, 0.88), rgba(247, 248, 250, 0.99) 28%);
+        backdrop-filter: blur(12px);
+      }
+
+      .sheet-form-slot .diagnostic-actions .btn,
+      .sheet-form-slot .diagnostic-actions .diagnostic-back {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .sheet-form-slot .diagnostic-success.is-visible {
+        flex: 0 0 auto;
+        border-top: 1px solid rgba(8, 43, 69, 0.1);
+      }
+
       .hero-media {
         position: relative;
         inset: auto;
@@ -1848,7 +2553,7 @@
           <p class="hero-lead">DFT localise l’origine des infiltrations, sécurise votre toiture et réalise les réparations nécessaires avec précision.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="tel:+33688046639">Appeler&nbsp;maintenant</a>
-            <a class="btn btn-secondary" href="mailto:touzani.jamal@dft45.net?subject=Demande%20de%20diagnostic%20toiture%20DFT">Demander un diagnostic</a>
+            <a class="btn btn-secondary" href="#diagnostic" data-diagnostic-open>Demander un diagnostic</a>
           </div>
           <div class="hero-status">
             <strong>Priorité : stopper l’aggravation</strong>
@@ -2099,6 +2804,134 @@
       </div>
     </section>
 
+    <section class="section diagnostic-request" id="diagnostic" aria-labelledby="diagnostic-request-title" data-section>
+      <div class="container diagnostic-shell">
+        <div class="diagnostic-intro" data-reveal>
+          <p class="eyebrow">Demande de diagnostic</p>
+          <h2 id="diagnostic-request-title">Décrire la situation en moins d’une minute.</h2>
+          <p>Un flow court pour transmettre les bons éléments sans formulaire administratif. DFT revient vers vous avec une lecture claire de la priorité.</p>
+          <ul class="diagnostic-points">
+            <li>Deux étapes seulement, avec les informations vraiment utiles.</li>
+            <li>Priorité donnée aux fuites actives, infiltrations visibles et mises hors d’eau.</li>
+            <li>Aucune promesse artificielle : l’urgence dépend de la situation et du secteur.</li>
+          </ul>
+        </div>
+
+        <div data-diagnostic-home data-reveal>
+          <div class="diagnostic-panel" data-diagnostic-panel>
+            <form class="diagnostic-form" name="diagnostic-dft" method="post" data-netlify="true" data-diagnostic-form data-step="1" novalidate>
+              <input type="hidden" name="form-name" value="diagnostic-dft">
+              <div class="diagnostic-form-header">
+                <strong data-step-label>Étape 1 sur 2</strong>
+                <span class="diagnostic-progress" aria-hidden="true"><span></span></span>
+              </div>
+
+              <section class="diagnostic-step is-active" data-form-step="1" aria-labelledby="diagnostic-step-1-title">
+                <h3 id="diagnostic-step-1-title">Quelle est la situation ?</h3>
+                <p class="diagnostic-step-lead">Sélectionnez le cas le plus proche, même si tout n’est pas encore clair.</p>
+
+                <fieldset class="choice-grid" aria-describedby="diagnostic-situation-error">
+                  <legend>Type de demande</legend>
+                  <label class="choice-option">
+                    <input type="radio" name="situation" value="Fuite active" required>
+                    <span>Fuite active</span>
+                  </label>
+                  <label class="choice-option">
+                    <input type="radio" name="situation" value="Infiltration visible">
+                    <span>Infiltration visible</span>
+                  </label>
+                  <label class="choice-option">
+                    <input type="radio" name="situation" value="Bâchage / urgence">
+                    <span>Bâchage / urgence</span>
+                  </label>
+                  <label class="choice-option">
+                    <input type="radio" name="situation" value="Vérification toiture">
+                    <span>Vérification toiture</span>
+                  </label>
+                  <label class="choice-option">
+                    <input type="radio" name="situation" value="Autre">
+                    <span>Autre</span>
+                  </label>
+                </fieldset>
+                <p class="diagnostic-error" id="diagnostic-situation-error" data-error-for="situation" aria-live="polite"></p>
+
+                <div class="field" data-field>
+                  <label for="diagnostic-address">Adresse ou commune</label>
+                  <div class="address-combobox" data-address-combobox>
+                    <input id="diagnostic-address" name="address" type="text" autocomplete="address-line1" placeholder="Ex. Orléans, Olivet, Saran..." required role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="diagnostic-address-suggestions" aria-describedby="diagnostic-address-help diagnostic-address-error">
+                    <!-- html-validate-disable-next prefer-native-element: suggestions BAN asynchrones, un select natif ne convient pas. -->
+                    <div class="address-suggestions" id="diagnostic-address-suggestions" role="listbox" data-address-suggestions hidden></div>
+                  </div>
+                  <span class="field-help" id="diagnostic-address-help">DFT intervient autour d’Orléans et dans le Loiret.</span>
+                  <span class="diagnostic-error" id="diagnostic-address-error" data-error-for="address" aria-live="polite"></span>
+                </div>
+
+                <div class="diagnostic-reassurance">Si la situation évolue, vous pourrez le préciser dans le message ou par téléphone.</div>
+
+                <div class="diagnostic-actions">
+                  <span></span>
+                  <button class="btn btn-primary" type="button" data-next-step>Continuer</button>
+                </div>
+              </section>
+
+              <section class="diagnostic-step" data-form-step="2" aria-labelledby="diagnostic-step-2-title">
+                <h3 id="diagnostic-step-2-title">Vos coordonnées</h3>
+                <p class="diagnostic-step-lead">DFT utilise ces informations uniquement pour revenir vers vous concernant cette demande.</p>
+
+                <div class="field-grid two">
+                  <div class="field" data-field>
+                    <label for="diagnostic-first-name">Prénom</label>
+                    <input id="diagnostic-first-name" name="first_name" type="text" autocomplete="given-name" required>
+                    <span class="diagnostic-error" data-error-for="first_name" aria-live="polite"></span>
+                  </div>
+                  <div class="field" data-field>
+                    <label for="diagnostic-last-name">Nom</label>
+                    <input id="diagnostic-last-name" name="last_name" type="text" autocomplete="family-name" required>
+                    <span class="diagnostic-error" data-error-for="last_name" aria-live="polite"></span>
+                  </div>
+                </div>
+
+                <div class="field-grid two">
+                  <div class="field" data-field>
+                    <label for="diagnostic-phone">Téléphone</label>
+                    <input id="diagnostic-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="06 88 04 66 39" required>
+                    <span class="diagnostic-error" data-error-for="phone" aria-live="polite"></span>
+                  </div>
+                  <div class="field" data-field>
+                    <label for="diagnostic-email">Email</label>
+                    <input id="diagnostic-email" name="email" type="email" autocomplete="email" required>
+                    <span class="diagnostic-error" data-error-for="email" aria-live="polite"></span>
+                  </div>
+                </div>
+
+                <div class="field" data-field>
+                  <label for="diagnostic-message">Message court <span class="field-help">optionnel</span></label>
+                  <textarea id="diagnostic-message" name="message" placeholder="Trace visible, pièce touchée, météo récente, accès toiture..."></textarea>
+                  <span class="diagnostic-error" data-error-for="message" aria-live="polite"></span>
+                </div>
+
+                <label class="consent">
+                  <input type="checkbox" name="privacy" value="accepted" required>
+                  <span>J’accepte d’être recontacté concernant ma demande.</span>
+                </label>
+                <p class="diagnostic-error" data-error-for="privacy" aria-live="polite"></p>
+
+                <div class="diagnostic-actions">
+                  <button class="diagnostic-back" type="button" data-prev-step>Retour</button>
+                  <button class="btn btn-primary" type="submit">Envoyer ma demande de diagnostic</button>
+                </div>
+              </section>
+
+              <div class="diagnostic-success" data-form-success role="status" aria-live="polite">
+                <strong>Demande prête à être transmise.</strong>
+                <p>Le formulaire est préparé pour un branchement Formspree, Netlify Forms ou backend. Aucun envoi réel n’est effectué en local.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section zones" id="zones" aria-labelledby="zones-title" data-section>
       <div class="container zones-layout">
         <div data-reveal>
@@ -2157,7 +2990,7 @@
         </div>
         <div class="final-actions">
           <a class="btn btn-primary" href="tel:+33688046639">Appeler&nbsp;DFT</a>
-          <a class="btn btn-secondary" href="mailto:touzani.jamal@dft45.net?subject=Demande%20de%20diagnostic%20toiture%20DFT">Demander un diagnostic</a>
+          <a class="btn btn-secondary" href="#diagnostic" data-diagnostic-open>Demander un diagnostic</a>
         </div>
       </div>
     </section>
@@ -2216,9 +3049,24 @@
     </div>
   </footer>
 
+  <div class="diagnostic-sheet-backdrop" data-diagnostic-backdrop hidden></div>
+  <aside class="diagnostic-sheet" data-diagnostic-sheet role="dialog" aria-modal="true" aria-labelledby="diagnostic-sheet-title" hidden>
+    <div class="sheet-panel">
+      <div class="sheet-grip" aria-hidden="true"></div>
+      <div class="sheet-top">
+        <div>
+          <h2 id="diagnostic-sheet-title" tabindex="-1">Demande de diagnostic</h2>
+          <p>Deux étapes, uniquement les informations utiles.</p>
+        </div>
+        <button class="sheet-close" type="button" data-diagnostic-close aria-label="Fermer">×</button>
+      </div>
+      <div class="sheet-form-slot" data-diagnostic-sheet-slot></div>
+    </div>
+  </aside>
+
   <nav class="mobile-actions" aria-label="Actions rapides">
     <a class="btn btn-primary" href="tel:+33688046639">Appeler</a>
-    <a class="btn btn-dark" href="mailto:touzani.jamal@dft45.net?subject=Demande%20de%20diagnostic%20toiture%20DFT">Diagnostic</a>
+    <a class="btn btn-dark" href="#diagnostic" data-diagnostic-open>Diagnostic</a>
   </nav>
 
   <script>
@@ -2229,6 +3077,32 @@
       const header = document.querySelector(".site-header");
       const navLinks = Array.from(document.querySelectorAll(".nav-link"));
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const diagnosticOpeners = document.querySelectorAll("[data-diagnostic-open]");
+      const diagnosticForm = document.querySelector("[data-diagnostic-form]");
+      const diagnosticPanel = document.querySelector("[data-diagnostic-panel]");
+      const diagnosticHome = document.querySelector("[data-diagnostic-home]");
+      const diagnosticSheetSlot = document.querySelector("[data-diagnostic-sheet-slot]");
+      const diagnosticSheet = document.querySelector("[data-diagnostic-sheet]");
+      const diagnosticBackdrop = document.querySelector("[data-diagnostic-backdrop]");
+      const diagnosticClose = document.querySelector("[data-diagnostic-close]");
+      const diagnosticMobile = window.matchMedia("(max-width: 719px)");
+      const addressInput = document.querySelector("#diagnostic-address");
+      const addressCombobox = document.querySelector("[data-address-combobox]");
+      const addressSuggestions = document.querySelector("[data-address-suggestions]");
+      const localAddressSuggestions = [
+        { label: "Orléans", meta: "Loiret" },
+        { label: "Fleury-les-Aubrais", meta: "Loiret" },
+        { label: "Saran", meta: "Loiret" },
+        { label: "Saint-Jean-de-Braye", meta: "Loiret" },
+        { label: "Olivet", meta: "Loiret" },
+        { label: "Saint-Cyr-en-Val", meta: "Loiret" },
+        { label: "Loiret", meta: "Zone d’intervention" }
+      ];
+      let diagnosticLastFocus = null;
+      let addressDebounce = null;
+      let addressRequest = null;
+      let addressResults = [];
+      let addressActiveIndex = -1;
 
       function setMenu(open) {
         toggle.setAttribute("aria-expanded", String(open));
@@ -2249,8 +3123,464 @@
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
           setMenu(false);
+          closeDiagnosticSheet();
         }
       });
+
+      function mountDiagnosticPanel() {
+        if (!diagnosticPanel || !diagnosticHome || !diagnosticSheetSlot) return;
+        if (diagnosticMobile.matches) {
+          diagnosticSheetSlot.appendChild(diagnosticPanel);
+        } else {
+          diagnosticHome.appendChild(diagnosticPanel);
+        }
+      }
+
+      function getFocusableElements(container) {
+        return Array.from(container.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])"))
+          .filter(function (element) {
+            return element.offsetWidth || element.offsetHeight || element.getClientRects().length;
+          });
+      }
+
+      function openDiagnosticSheet() {
+        if (!diagnosticSheet || !diagnosticBackdrop) return;
+        diagnosticLastFocus = document.activeElement;
+        setMenu(false);
+        mountDiagnosticPanel();
+        diagnosticBackdrop.hidden = false;
+        diagnosticSheet.hidden = false;
+        document.body.classList.add("sheet-open");
+        requestAnimationFrame(function () {
+          diagnosticBackdrop.classList.add("is-open");
+          diagnosticSheet.classList.add("is-open");
+        });
+        window.setTimeout(function () {
+          const title = diagnosticSheet.querySelector("#diagnostic-sheet-title");
+          if (title) title.focus({ preventScroll: true });
+        }, reduceMotion ? 0 : 180);
+      }
+
+      function closeDiagnosticSheet() {
+        if (!diagnosticSheet || diagnosticSheet.hidden) return;
+        closeAddressSuggestions();
+        diagnosticBackdrop.classList.remove("is-open");
+        diagnosticSheet.classList.remove("is-open");
+        document.body.classList.remove("sheet-open");
+        window.setTimeout(function () {
+          diagnosticBackdrop.hidden = true;
+          diagnosticSheet.hidden = true;
+          if (diagnosticLastFocus && typeof diagnosticLastFocus.focus === "function") {
+            diagnosticLastFocus.focus({ preventScroll: true });
+          }
+        }, reduceMotion ? 0 : 240);
+      }
+
+      function setDiagnosticStep(step, shouldFocus) {
+        if (!diagnosticForm) return;
+        closeAddressSuggestions();
+        diagnosticForm.dataset.step = String(step);
+        diagnosticForm.querySelectorAll("[data-form-step]").forEach(function (stepElement) {
+          stepElement.classList.toggle("is-active", stepElement.dataset.formStep === String(step));
+        });
+        const label = diagnosticForm.querySelector("[data-step-label]");
+        if (label) label.textContent = "Étape " + step + " sur 2";
+        if (shouldFocus) {
+          const heading = diagnosticForm.querySelector("[data-form-step='" + step + "'] h3");
+          if (heading) {
+            heading.setAttribute("tabindex", "-1");
+            window.setTimeout(function () {
+              heading.focus({ preventScroll: true });
+            }, reduceMotion ? 0 : 160);
+          }
+        }
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (character) {
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "\"": "&quot;",
+            "'": "&#039;"
+          }[character];
+        });
+      }
+
+      function closeAddressSuggestions() {
+        if (addressDebounce) {
+          window.clearTimeout(addressDebounce);
+          addressDebounce = null;
+        }
+        if (addressRequest) {
+          addressRequest.abort();
+          addressRequest = null;
+        }
+        addressResults = [];
+        addressActiveIndex = -1;
+        if (addressSuggestions) {
+          addressSuggestions.hidden = true;
+          addressSuggestions.innerHTML = "";
+        }
+        if (addressInput) {
+          addressInput.setAttribute("aria-expanded", "false");
+          addressInput.removeAttribute("aria-activedescendant");
+        }
+        if (addressCombobox) addressCombobox.classList.remove("is-open");
+      }
+
+      function getAddressMeta(properties) {
+        const parts = [];
+        if (properties.postcode) parts.push(properties.postcode);
+        if (properties.city && properties.city !== properties.name) parts.push(properties.city);
+        return parts.join(" ");
+      }
+
+      function normalizeAddressValue(value) {
+        return String(value)
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
+      }
+
+      function getLocalAddressMatches(query) {
+        const normalizedQuery = normalizeAddressValue(query.trim());
+        if (normalizedQuery.length < 3) return [];
+        return localAddressSuggestions.filter(function (item) {
+          return normalizeAddressValue(item.label).includes(normalizedQuery);
+        });
+      }
+
+      function setAddressActive(index) {
+        if (!addressSuggestions || !addressInput) return;
+        const options = Array.from(addressSuggestions.querySelectorAll("[role='option']"));
+        addressActiveIndex = index;
+        if (index < 0) addressInput.removeAttribute("aria-activedescendant");
+
+        options.forEach(function (option, optionIndex) {
+          const active = optionIndex === index;
+          option.classList.toggle("is-active", active);
+          option.setAttribute("aria-selected", String(active));
+          if (active) {
+            addressInput.setAttribute("aria-activedescendant", option.id);
+            option.scrollIntoView({ block: "nearest" });
+          }
+        });
+      }
+
+      function selectAddressSuggestion(index) {
+        const result = addressResults[index];
+        if (!result || !addressInput) return;
+        addressInput.value = result.label;
+        validateInput(addressInput, false);
+        setError("address", "");
+        closeAddressSuggestions();
+        addressInput.focus({ preventScroll: true });
+      }
+
+      function renderAddressSuggestions(features, query) {
+        if (!addressInput || !addressSuggestions || !addressCombobox) return;
+        const seenLabels = new Set();
+        const apiMatches = features.map(function (feature) {
+          const properties = feature.properties || {};
+          return {
+            label: properties.label || "",
+            meta: getAddressMeta(properties)
+          };
+        });
+        addressSuggestions.innerHTML = "";
+        addressResults = getLocalAddressMatches(query).concat(apiMatches)
+          .filter(function (item) {
+            const normalizedLabel = normalizeAddressValue(item.label);
+            if (!normalizedLabel || seenLabels.has(normalizedLabel)) return false;
+            seenLabels.add(normalizedLabel);
+            return true;
+          })
+          .slice(0, 5);
+
+        if (!addressResults.length) {
+          closeAddressSuggestions();
+          return;
+        }
+
+        addressResults.forEach(function (item, index) {
+          const option = document.createElement("div");
+          option.className = "address-suggestion";
+          option.id = "diagnostic-address-option-" + index;
+          option.setAttribute("role", "option");
+          option.setAttribute("aria-selected", "false");
+          option.innerHTML = "<strong>" + escapeHtml(item.label) + "</strong>" + (item.meta ? "<small>" + escapeHtml(item.meta) + "</small>" : "");
+          option.addEventListener("pointerdown", function (event) {
+            event.preventDefault();
+            selectAddressSuggestion(index);
+          });
+          option.addEventListener("mousedown", function (event) {
+            event.preventDefault();
+          });
+          option.addEventListener("click", function (event) {
+            event.preventDefault();
+            selectAddressSuggestion(index);
+          });
+          addressSuggestions.appendChild(option);
+        });
+
+        addressSuggestions.hidden = false;
+        addressInput.setAttribute("aria-expanded", "true");
+        addressCombobox.classList.add("is-open");
+        setAddressActive(-1);
+      }
+
+      function requestAddressSuggestions(query) {
+        const trimmedQuery = query.trim();
+        if (trimmedQuery.length < 3) {
+          closeAddressSuggestions();
+          return;
+        }
+
+        if (addressRequest) addressRequest.abort();
+        const controller = new AbortController();
+        addressRequest = controller;
+        const url = "https://api-adresse.data.gouv.fr/search/?q=" + encodeURIComponent(trimmedQuery) + "&limit=5&autocomplete=1";
+
+        fetch(url, { signal: controller.signal })
+          .then(function (response) {
+            if (!response.ok) throw new Error("Adresse API indisponible");
+            return response.json();
+          })
+          .then(function (data) {
+            const features = Array.isArray(data.features) ? data.features : [];
+            renderAddressSuggestions(features, trimmedQuery);
+          })
+          .catch(function (error) {
+            if (error.name !== "AbortError") renderAddressSuggestions([], trimmedQuery);
+          })
+          .finally(function () {
+            if (addressRequest === controller) addressRequest = null;
+          });
+      }
+
+      function queueAddressSearch() {
+        if (!addressInput) return;
+        const query = addressInput.value;
+        if (addressDebounce) window.clearTimeout(addressDebounce);
+        if (query.trim().length < 3) {
+          closeAddressSuggestions();
+          return;
+        }
+        addressDebounce = window.setTimeout(function () {
+          requestAddressSuggestions(query);
+        }, 250);
+      }
+
+      function handleAddressKeydown(event) {
+        if (!addressSuggestions || !addressResults.length || addressSuggestions.hidden) {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            queueAddressSearch();
+          }
+          return;
+        }
+
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          setAddressActive(addressActiveIndex < addressResults.length - 1 ? addressActiveIndex + 1 : 0);
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          setAddressActive(addressActiveIndex > 0 ? addressActiveIndex - 1 : addressResults.length - 1);
+        } else if (event.key === "Enter" && addressActiveIndex >= 0) {
+          event.preventDefault();
+          selectAddressSuggestion(addressActiveIndex);
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          event.stopPropagation();
+          closeAddressSuggestions();
+        } else if (event.key === "Tab") {
+          closeAddressSuggestions();
+        }
+      }
+
+      function setError(name, message) {
+        const error = diagnosticForm && diagnosticForm.querySelector("[data-error-for='" + name + "']");
+        if (error) error.textContent = message || "";
+      }
+
+      function validateInput(input, showMessage) {
+        if (!input || input.name === "form-name" || input.name === "message" || input.type === "radio") return true;
+        const field = input.closest("[data-field]");
+        let message = "";
+        const value = input.type === "checkbox" ? input.checked : input.value.trim();
+
+        if (input.required && !value) {
+          message = input.type === "checkbox" ? "Cette autorisation est nécessaire pour être recontacté." : "Ce champ est nécessaire.";
+        } else if (input.type === "email" && input.value && !input.validity.valid) {
+          message = "Indiquez un email valide.";
+        } else if (input.type === "tel" && input.value.replace(/\D/g, "").length < 10) {
+          message = "Indiquez un numéro joignable.";
+        }
+
+        input.setAttribute("aria-invalid", message ? "true" : "false");
+        if (field) {
+          field.classList.toggle("is-invalid", Boolean(message));
+          field.classList.toggle("is-valid", !message && Boolean(input.value.trim()));
+        }
+        if (showMessage || message) setError(input.name, message);
+        return !message;
+      }
+
+      function validateStepOne() {
+        if (!diagnosticForm) return false;
+        const selectedSituation = diagnosticForm.querySelector("input[name='situation']:checked");
+        const fieldset = diagnosticForm.querySelector(".choice-grid");
+        const address = diagnosticForm.elements.address;
+        let valid = true;
+
+        if (!selectedSituation) {
+          valid = false;
+          setError("situation", "Choisissez la situation la plus proche.");
+          if (fieldset) fieldset.setAttribute("aria-invalid", "true");
+        } else {
+          setError("situation", "");
+          if (fieldset) fieldset.removeAttribute("aria-invalid");
+        }
+
+        if (!validateInput(address, true)) valid = false;
+        if (!valid) {
+          const target = !selectedSituation ? fieldset : address;
+          if (fieldset && !selectedSituation) fieldset.setAttribute("tabindex", "-1");
+          if (target) target.focus();
+        }
+        return valid;
+      }
+
+      function validateStepTwo() {
+        if (!diagnosticForm) return false;
+        const requiredFields = ["first_name", "last_name", "phone", "email", "privacy"];
+        let firstInvalid = null;
+        const valid = requiredFields.every(function (name) {
+          const input = diagnosticForm.elements[name];
+          const inputValid = validateInput(input, true);
+          if (!inputValid && !firstInvalid) firstInvalid = input;
+          return inputValid;
+        });
+        if (firstInvalid) firstInvalid.focus();
+        return valid;
+      }
+
+      mountDiagnosticPanel();
+      if (typeof diagnosticMobile.addEventListener === "function") {
+        diagnosticMobile.addEventListener("change", function () {
+          closeDiagnosticSheet();
+          mountDiagnosticPanel();
+        });
+      }
+
+      diagnosticOpeners.forEach(function (opener) {
+        opener.addEventListener("click", function (event) {
+          if (diagnosticMobile.matches) {
+            event.preventDefault();
+            openDiagnosticSheet();
+            return;
+          }
+
+          const section = document.querySelector("#diagnostic");
+          if (!section) return;
+          event.preventDefault();
+          closeDiagnosticSheet();
+          mountDiagnosticPanel();
+          section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        });
+      });
+
+      if (diagnosticBackdrop) {
+        diagnosticBackdrop.addEventListener("click", closeDiagnosticSheet);
+      }
+
+      if (diagnosticClose) {
+        diagnosticClose.addEventListener("click", closeDiagnosticSheet);
+      }
+
+      if (diagnosticSheet) {
+        diagnosticSheet.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeDiagnosticSheet();
+            return;
+          }
+          if (event.key !== "Tab") return;
+          const focusable = getFocusableElements(diagnosticSheet);
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        });
+      }
+
+      if (addressInput) {
+        addressInput.addEventListener("input", queueAddressSearch);
+        addressInput.addEventListener("focus", function () {
+          if (addressInput.value.trim().length >= 3) queueAddressSearch();
+        });
+        addressInput.addEventListener("keydown", handleAddressKeydown);
+        addressInput.addEventListener("blur", function () {
+          window.setTimeout(function () {
+            if (!addressCombobox || !addressCombobox.contains(document.activeElement)) {
+              closeAddressSuggestions();
+            }
+          }, 120);
+        });
+      }
+
+      document.addEventListener("pointerdown", function (event) {
+        if (addressCombobox && !addressCombobox.contains(event.target)) {
+          closeAddressSuggestions();
+        }
+      });
+
+      if (diagnosticForm) {
+        diagnosticForm.querySelector("[data-next-step]").addEventListener("click", function () {
+          if (validateStepOne()) setDiagnosticStep(2, true);
+        });
+
+        diagnosticForm.querySelector("[data-prev-step]").addEventListener("click", function () {
+          setDiagnosticStep(1, true);
+        });
+
+        diagnosticForm.addEventListener("input", function (event) {
+          if (event.target.matches("input, textarea")) {
+            validateInput(event.target, false);
+          }
+        });
+
+        diagnosticForm.addEventListener("change", function (event) {
+          if (event.target.name === "situation") {
+            setError("situation", "");
+            const fieldset = diagnosticForm.querySelector(".choice-grid");
+            if (fieldset) fieldset.removeAttribute("aria-invalid");
+          } else if (event.target.matches("input, textarea")) {
+            validateInput(event.target, true);
+          }
+        });
+
+        diagnosticForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          if (diagnosticForm.dataset.step !== "2") {
+            if (validateStepOne()) setDiagnosticStep(2, true);
+            return;
+          }
+          if (!validateStepTwo()) return;
+          const success = diagnosticForm.querySelector("[data-form-success]");
+          if (success) {
+            success.classList.add("is-visible");
+            success.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+          }
+        });
+      }
 
       function updateScrollState() {
         const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);

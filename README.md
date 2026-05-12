@@ -56,6 +56,15 @@ Les fichiers HTML concurrents et les notes papier sont conservés dans `archive/
 - `robots.txt`, `sitemap.xml`, canonical et métas OpenGraph/Twitter utilisent `https://dft45.net/` comme domaine cible. À ajuster si le domaine final change.
 - Le logo a été réduit à une taille plus adaptée à son usage dans l’interface.
 
+## Demande de diagnostic
+
+- Les CTA `Demander un diagnostic` ouvrent un flow en 2 étapes.
+- Sur desktop et tablette, le formulaire est intégré dans la section `#diagnostic`.
+- Sur mobile, le même formulaire est déplacé dans une bottom sheet pour réduire la friction.
+- Le formulaire est prêt pour Netlify Forms grâce à `data-netlify="true"` et au champ caché `form-name`.
+- Pour Formspree, ajouter l’URL Formspree dans l’attribut `action` du formulaire.
+- Pour un backend futur, conserver les champs `situation`, `address`, `first_name`, `last_name`, `phone`, `email`, `message` et `privacy`.
+
 ## Ouvrir le site
 
 Ouvrir directement `index.html` dans un navigateur.
