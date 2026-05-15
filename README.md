@@ -10,10 +10,22 @@ dft-site/
     images/
       hero-intervention.jpg
       hero-intervention.webp
-      recherche-fumigene.jpg
-      recherche-fumigene.webp
-      inspection-camera.jpg
-      inspection-camera.webp
+      controle-etancheite-toiture.jpg
+      controle-etancheite-toiture.webp
+      inspection-zone-difficile.jpg
+      inspection-zone-difficile.webp
+      releve-diagnostic-infiltration.webp
+      controle-zone-infiltration.webp
+      intervention-toiture-camion-dft.webp
+      toiture-ancienne-cour.webp
+      toiture-ancienne-lucarne.webp
+      toitures-anciennes-centre-ville.webp
+      noue-zinc-toiture-tuiles-detail.webp
+      noue-zinc-toiture-tuiles-vue-large.webp
+      noue-zinc-tuiles-canal-toiture.webp
+      perforation-noue-zinc-recherche-fuite.webp
+      toiture-tuiles-anciennes-gouttiere-zinc.webp
+      tuile-faitage-cassee-toiture.webp
       toiture-terrasse.jpg
       toiture-terrasse.webp
       infiltration-plafond.jpg
@@ -33,12 +45,13 @@ dft-site/
 ## Mapping des fichiers source
 
 - `archive/5ème photo.jpg` -> `assets/images/hero-intervention.jpg`
-- `archive/3ème photo profil.jpg` -> `assets/images/recherche-fumigene.jpg`
-- `archive/2ème photo profil.jpg` -> `assets/images/inspection-camera.jpg`
+- `archive/3ème photo profil.jpg` -> `assets/images/controle-etancheite-toiture.jpg`
+- `archive/2ème photo profil.jpg` -> `assets/images/inspection-zone-difficile.jpg`
 - `archive/4ème photo.jpg` -> `assets/images/toiture-terrasse.jpg`
 - `archive/1er photo profil google.jpg` -> `assets/images/infiltration-plafond.jpg`
 - `archive/6ème photo.jpg` -> `assets/images/infiltration-fenetre.jpg`
 - `archive/5ème photo.jpg` -> `assets/images/degat-interieur.jpg`
+- `archive/unused-assets/*` -> images terrain WebP renommées selon leur usage marketing : intervention, diagnostic, défaut de noue zinc, toiture ancienne.
 - `archive/Logo DFT.png` -> `assets/logo/logo-dft.png`
 
 Les fichiers HTML concurrents et les notes papier sont conservés dans `archive/`.
@@ -47,12 +60,15 @@ Les fichiers HTML concurrents et les notes papier sont conservés dans `archive/
 
 - Base visuelle retenue : `archive/gemini-code-1778516314661.html`, pour son approche plus premium, éditoriale et asymétrique.
 - Base structurelle retenue : `archive/index (1).html`, pour sa navigation, ses sections complètes, ses avis explicitement marqués comme exemples et son meilleur socle d’accessibilité.
-- Promesses retirées : `24h/24`, `24h/7j`, délai garanti, drone, garantie/décennale souscrite, avis clients présentés comme réels, photos externes.
-- Mention décennale conservée uniquement sous forme prudente : `Assurance décennale : à renseigner / vérifier`.
+- Contenus terrain intégrés après confirmation : recherche de fuite, intervention d’urgence, mise hors d’eau, réparation toiture, rapport d’intervention et contrats d’entretien.
+- Promesses encadrées : disponibilité `24h/24` et `7j/7` affichée, sans délai horaire garanti. Les avis clients réels restent absents tant qu’ils ne sont pas fournis ou vérifiés.
+- Les noms de matériel et de marques techniques ne sont plus affichés dans le contenu public du site.
 
 ## Optimisations
 
 - Les photos restent conservées en JPG, mais le site charge les versions WebP locales pour améliorer le poids mobile.
+- Les contenus WebP distincts sont utilisés dans `index.html` avec une hiérarchie : hero, symptômes, diagnostic, causes fréquentes, lecture globale, toiture terrasse.
+- Les images hors hero sont en `loading="lazy"`, avec `width`, `height`, `decoding="async"` et des ratios CSS contrôlés.
 - `robots.txt`, `sitemap.xml`, canonical et métas OpenGraph/Twitter utilisent `https://dft45.net/` comme domaine cible. À ajuster si le domaine final change.
 - Le logo a été réduit à une taille plus adaptée à son usage dans l’interface.
 
@@ -68,4 +84,3 @@ Les fichiers HTML concurrents et les notes papier sont conservés dans `archive/
 ## Ouvrir le site
 
 Ouvrir directement `index.html` dans un navigateur.
-# DFT
