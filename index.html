@@ -136,7 +136,7 @@
     }
 
     .tilt:hover {
-      box-shadow: 0 24px 54px rgba(8, 43, 69, 0.2);
+      box-shadow: 0 18px 42px rgba(8, 43, 69, 0.14);
     }
 
     .section {
@@ -655,10 +655,8 @@
       font-weight: 820;
     }
 
-    .hero .btn-primary,
-    .header-call,
-    .mobile-actions .btn-primary {
-      animation: cta-breathe 3.2s ease-in-out infinite;
+    .hero .btn-primary {
+      animation: cta-breathe 3.8s ease-in-out infinite;
     }
 
     @keyframes cta-breathe {
@@ -904,7 +902,7 @@
       gap: 32px;
       min-width: 0;
       max-width: 100%;
-      clip-path: inset(-80px 0 -80px 0);
+      clip-path: inset(-80px -48px -80px -48px);
     }
 
     .problem-copy {
@@ -970,11 +968,11 @@
     .terrace-card::after {
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.32), transparent 62%);
+      background: linear-gradient(120deg, transparent 34%, rgba(255, 255, 255, 0.18), transparent 62%);
       content: "";
       opacity: 0;
       transform: translateX(-110%);
-      transition: transform 700ms ease, opacity 700ms ease;
+      transition: transform 620ms ease, opacity 620ms ease;
       pointer-events: none;
     }
 
@@ -985,8 +983,8 @@
     .overview-main:hover img,
     .overview-thumb:hover img,
     .terrace-card:hover img {
-      transform: scale(1.045);
-      filter: saturate(1.04) contrast(1.02);
+      transform: scale(1.025);
+      filter: saturate(1.02) contrast(1.01);
     }
 
     .damage-photo:hover::after,
@@ -1021,7 +1019,7 @@
       gap: 72px;
       margin-top: 44px;
       max-width: 100%;
-      clip-path: inset(-80px 0 -80px 0);
+      clip-path: inset(-80px -48px -80px -48px);
     }
 
     .service {
@@ -1105,18 +1103,7 @@
       border-radius: 50%;
       background: var(--orange);
       content: "";
-      box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.4);
-      animation: point-pulse 2.6s ease-out infinite;
-    }
-
-    @keyframes point-pulse {
-      60% {
-        box-shadow: 0 0 0 8px rgba(255, 122, 0, 0);
-      }
-
-      100% {
-        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
-      }
+      box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
     }
 
     .field-proof {
@@ -1143,7 +1130,7 @@
       align-items: end;
       min-width: 0;
       max-width: 100%;
-      clip-path: inset(-80px 0 -80px 0);
+      clip-path: inset(-80px -48px -80px -48px);
     }
 
     .proof-copy {
@@ -1233,16 +1220,18 @@
     }
 
     .case-rail {
+      --rail-bleed: min(18px, var(--site-gutter));
       display: flex;
-      gap: 14px;
+      gap: 16px;
       overflow-x: auto;
       overflow-y: hidden;
       overscroll-behavior-x: contain;
       scroll-snap-type: x mandatory;
-      scroll-padding: 2px;
-      padding: 2px 2px 18px;
-      contain: layout paint;
-      max-width: 100%;
+      scroll-padding: 18px;
+      padding: 18px 18px 40px;
+      margin: -18px calc(var(--rail-bleed) * -1) -22px;
+      max-width: calc(100% + var(--rail-bleed) + var(--rail-bleed));
+      scrollbar-gutter: stable;
       scrollbar-color: rgba(15, 76, 117, 0.34) transparent;
     }
 
@@ -1259,12 +1248,26 @@
       position: relative;
       flex: 0 0 min(84vw, 330px);
       overflow: hidden;
-      contain: layout paint;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--white);
       scroll-snap-align: start;
       box-shadow: 0 16px 36px rgba(8, 43, 69, 0.09);
+      transition: transform 190ms ease, border-color 190ms ease, box-shadow 190ms ease;
+    }
+
+    .cause-card:hover {
+      border-color: rgba(255, 122, 0, 0.24);
+      box-shadow: 0 20px 46px rgba(8, 43, 69, 0.13);
+      transform: translateY(-3px);
+    }
+
+    .js .cause-card[data-reveal] {
+      transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1), border-color 190ms ease, box-shadow 190ms ease;
+    }
+
+    .js .cause-card[data-reveal].is-visible:hover {
+      transform: translateY(-3px);
     }
 
     .cause-card img {
@@ -1307,7 +1310,7 @@
       align-items: center;
       min-width: 0;
       max-width: 100%;
-      clip-path: inset(-80px 0 -80px 0);
+      clip-path: inset(-80px -48px -80px -48px);
     }
 
     .overview-copy,
@@ -1408,12 +1411,19 @@
       background: var(--white);
       position: relative;
       overflow: hidden;
+      transition: background-color 180ms ease;
+    }
+
+    .js .trust-item[data-reveal] {
+      transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1), background-color 180ms ease;
     }
 
     .trust-item::before {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 122, 0, 0.12), transparent 34%);
+      background:
+        linear-gradient(90deg, rgba(255, 122, 0, 0.08), transparent 36%),
+        radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 122, 0, 0.08), transparent 34%);
       content: "";
       opacity: 0;
       transition: opacity 180ms ease;
@@ -1497,7 +1507,7 @@
       gap: 32px;
       align-items: center;
       max-width: 100%;
-      clip-path: inset(-80px 0 -80px 0);
+      clip-path: inset(-80px -48px -80px -48px);
     }
 
     .city-tags {
@@ -2627,7 +2637,7 @@
       }
 
       .cause-card {
-        flex-basis: calc((100% - 28px) / 3);
+        flex-basis: calc((100% - 32px) / 3);
       }
 
       .overview-layout,
@@ -2961,10 +2971,11 @@
       }
 
       .case-rail {
-        margin-right: calc(var(--container-gutter) * -1);
-        width: calc(100% + var(--container-gutter));
-        max-width: calc(100vw - var(--container-gutter));
-        padding-right: var(--container-gutter);
+        margin: -14px calc(var(--container-gutter) * -1) -20px -12px;
+        width: calc(100% + var(--container-gutter) + 12px);
+        max-width: calc(100vw - var(--container-gutter) + 12px);
+        scroll-padding: 12px;
+        padding: 14px var(--container-gutter) 34px 12px;
       }
 
       .cause-card {
@@ -3285,42 +3296,42 @@
         </div>
 
         <div class="case-rail" data-rail="causes" tabindex="0" aria-label="Causes fréquentes de fuite toiture observées par DFT">
-          <figure class="cause-card tilt" data-tilt data-reveal>
+          <figure class="cause-card" data-reveal>
             <img src="assets/images/noue-zinc-toiture-tuiles-detail.webp" width="1050" height="1400" alt="Détail d'une noue zinc entre des tuiles anciennes" loading="lazy" decoding="async">
             <figcaption>
               <strong>Noue zinc inspectée</strong>
               <p>Un point singulier qui peut concentrer l’eau et révéler une entrée discrète.</p>
             </figcaption>
           </figure>
-          <figure class="cause-card tilt" data-tilt data-reveal>
+          <figure class="cause-card" data-reveal>
             <img src="assets/images/noue-zinc-toiture-tuiles-vue-large.webp" width="1050" height="1400" alt="Vue large d'une noue zinc sur toiture en tuiles" loading="lazy" decoding="async">
             <figcaption>
               <strong>Lecture d’ensemble</strong>
               <p>La vue large permet de relier le défaut au cheminement possible de l’eau.</p>
             </figcaption>
           </figure>
-          <figure class="cause-card tilt" data-tilt data-reveal>
+          <figure class="cause-card" data-reveal>
             <img src="assets/images/noue-zinc-tuiles-canal-toiture.webp" width="1050" height="1400" alt="Noue zinc entre deux pans de toiture en tuiles canal" loading="lazy" decoding="async">
             <figcaption>
               <strong>Noue sur tuiles canal</strong>
               <p>Un raccord à vérifier avec méthode lorsque l’infiltration revient après la pluie.</p>
             </figcaption>
           </figure>
-          <figure class="cause-card tilt" data-tilt data-reveal>
+          <figure class="cause-card" data-reveal>
             <img src="assets/images/perforation-noue-zinc-recherche-fuite.webp" width="1050" height="1400" alt="Perforation observée sur une noue zinc lors d'une recherche de fuite" loading="lazy" decoding="async">
             <figcaption>
               <strong>Perforation localisée</strong>
               <p>Une petite ouverture peut suffire à provoquer des dégâts visibles à l’intérieur.</p>
             </figcaption>
           </figure>
-          <figure class="cause-card tilt" data-tilt data-reveal>
+          <figure class="cause-card" data-reveal>
             <img src="assets/images/tuile-faitage-cassee-toiture.webp" width="768" height="1024" alt="Tuile de faîtage cassée sur une toiture" loading="lazy" decoding="async">
             <figcaption>
               <strong>Faîtage abîmé</strong>
               <p>Un élément cassé en hauteur peut créer une entrée d’eau difficile à voir du sol.</p>
             </figcaption>
           </figure>
-          <figure class="cause-card tilt" data-tilt data-reveal>
+          <figure class="cause-card" data-reveal>
             <img src="assets/images/toiture-tuiles-anciennes-gouttiere-zinc.webp" width="1050" height="1400" alt="Toiture ancienne en tuiles avec gouttière zinc et zones sensibles" loading="lazy" decoding="async">
             <figcaption>
               <strong>Toiture ancienne</strong>
@@ -3391,27 +3402,27 @@
           <p class="section-lead">Des repères simples pour cadrer l’intervention sans jargon inutile.</p>
         </div>
         <div class="trust-grid">
-          <article class="trust-item tilt" data-tilt data-reveal>
+          <article class="trust-item" data-reveal>
             <h3>Réactivité</h3>
             <p>Répondre vite quand la situation devient critique.</p>
           </article>
-          <article class="trust-item tilt" data-tilt data-reveal>
+          <article class="trust-item" data-reveal>
             <h3>Précision</h3>
             <p>Identifier la source avec une lecture rigoureuse, même si elle est discrète.</p>
           </article>
-          <article class="trust-item tilt" data-tilt data-reveal>
+          <article class="trust-item" data-reveal>
             <h3>Sérénité</h3>
             <p>Les interventions sont couvertes par notre assurance décennale.</p>
           </article>
-          <article class="trust-item tilt" data-tilt data-reveal>
+          <article class="trust-item" data-reveal>
             <h3>Rapport d’intervention</h3>
             <p>Un compte rendu détaillé est remis après chaque passage.</p>
           </article>
-          <article class="trust-item tilt" data-tilt data-reveal>
+          <article class="trust-item" data-reveal>
             <h3>Contrats d’entretien</h3>
             <p>Un suivi programmé aide à préserver l’étanchéité et à limiter les sinistres.</p>
           </article>
-          <article class="trust-item tilt" data-tilt data-reveal>
+          <article class="trust-item" data-reveal>
             <h3>Intervention locale</h3>
             <p>DFT intervient autour d’Orléans, dans les communes voisines et dans le Loiret.</p>
           </article>
@@ -3575,7 +3586,7 @@
 
               <div class="diagnostic-success" data-form-success role="status" aria-live="polite">
                 <strong>Demande prête à être transmise.</strong>
-                <p>Le formulaire est préparé pour un branchement Formspree, Netlify Forms ou backend. Aucun envoi réel n’est effectué en local.</p>
+                <p>Le formulaire est prêt à partir vers Netlify Forms une fois les champs validés.</p>
               </div>
             </form>
           </div>
@@ -4298,17 +4309,12 @@
         });
 
         diagnosticForm.addEventListener("submit", function (event) {
-          event.preventDefault();
           if (diagnosticForm.dataset.step !== "2") {
+            event.preventDefault();
             if (validateStepOne()) setDiagnosticStep(2, true);
             return;
           }
-          if (!validateStepTwo()) return;
-          const success = diagnosticForm.querySelector("[data-form-success]");
-          if (success) {
-            success.classList.add("is-visible");
-            success.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
-          }
+          if (!validateStepTwo()) event.preventDefault();
         });
       }
 
