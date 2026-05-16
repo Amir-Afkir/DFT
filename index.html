@@ -1519,86 +1519,47 @@
 
     .local-map {
       position: relative;
-      min-height: 330px;
+      display: block;
+      margin: 0;
+      min-height: 0;
+      width: 100%;
+      aspect-ratio: 1434 / 1097;
+      border: 1px solid var(--line);
       overflow: hidden;
       border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(15, 76, 117, 0.14), rgba(8, 43, 69, 0.05)),
-        repeating-linear-gradient(45deg, #FFFFFF 0 16px, #F1F5F9 16px 32px);
-      border: 1px solid var(--line);
-      box-shadow: 0 18px 44px rgba(8, 43, 69, 0.1);
+      background: #F7F8FA;
+      box-shadow: 0 22px 58px rgba(8, 43, 69, 0.12);
     }
 
-    .local-map::before,
-    .local-map::after {
+    .local-map::before {
       position: absolute;
-      inset: 48px;
-      border: 1px solid rgba(15, 76, 117, 0.24);
-      border-radius: 50%;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), rgba(255, 122, 0, 0.08));
       content: "";
+      pointer-events: none;
     }
 
     .local-map::after {
-      inset: 90px;
-      border-color: rgba(255, 122, 0, 0.34);
-    }
-
-    .map-center {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 15px;
-      height: 15px;
-      border: 4px solid var(--white);
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 0 8px rgba(255, 122, 0, 0.16);
-      transform: translate(-50%, -50%);
-      animation: map-pulse 2.1s ease-out infinite;
+      inset: 0;
+      z-index: 1;
+      border-radius: 8px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.52);
+      content: "";
+      pointer-events: none;
     }
 
-    .map-label {
-      position: absolute;
-      padding: 6px 8px;
-      border-radius: 6px;
-      background: rgba(8, 43, 69, 0.9);
-      color: var(--white);
-      font-size: 0.78rem;
-      font-weight: 850;
-      white-space: nowrap;
-      transition: transform 180ms ease, background-color 180ms ease;
-    }
-
-    .map-label:hover {
-      background: var(--orange);
-      color: var(--blue-night);
-      transform: translateY(-3px);
-    }
-
-    @keyframes map-pulse {
-      to {
-        box-shadow: 0 0 0 26px rgba(255, 122, 0, 0);
-      }
-    }
-
-    .map-label:nth-child(2) {
-      top: 28%;
-      left: 18%;
-    }
-
-    .map-label:nth-child(3) {
-      top: 20%;
-      right: 15%;
-    }
-
-    .map-label:nth-child(4) {
-      left: 14%;
-      bottom: 22%;
-    }
-
-    .map-label:nth-child(5) {
-      right: 16%;
-      bottom: 24%;
+    .local-map img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: contain;
+      object-position: center;
     }
 
     .diagnostic-request {
@@ -2201,18 +2162,6 @@
       background: var(--off-white);
     }
 
-    .review-note {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 8px 10px;
-      border: 1px solid rgba(255, 122, 0, 0.35);
-      border-radius: 6px;
-      background: rgba(255, 122, 0, 0.08);
-      color: var(--blue-night);
-      font-size: 0.9rem;
-      font-weight: 800;
-    }
-
     .reviews-grid {
       display: grid;
       gap: 16px;
@@ -2220,11 +2169,22 @@
     }
 
     .review {
+      position: relative;
       padding: 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--white);
       transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .review::before {
+      display: block;
+      width: 34px;
+      height: 3px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: var(--orange);
+      content: "";
     }
 
     .review:hover {
@@ -2243,6 +2203,49 @@
       margin-top: 10px;
       color: var(--text-gray);
       font-style: italic;
+    }
+
+    .review-quote {
+      margin: 0;
+    }
+
+    .review-quote p {
+      margin: 0;
+      color: var(--blue-night);
+      font-size: 1.08rem;
+      line-height: 1.65;
+      font-style: normal;
+      font-weight: 780;
+    }
+
+    .review-source {
+      display: block;
+      margin-top: 18px;
+      color: var(--text-gray);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .google-review-cta {
+      display: grid;
+      gap: 14px;
+      align-items: center;
+      margin-top: 20px;
+      padding: 16px 18px;
+      border: 1px solid rgba(8, 43, 69, 0.12);
+      border-radius: 8px;
+      background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
+      box-shadow: 0 14px 34px rgba(8, 43, 69, 0.07);
+    }
+
+    .google-review-prompt {
+      color: var(--text-gray);
+      font-size: 0.96rem;
+      font-weight: 760;
+    }
+
+    .google-review-cta .btn {
+      justify-self: start;
     }
 
     .final-cta {
@@ -2520,6 +2523,11 @@
       .reviews-grid,
       .footer-grid {
         grid-template-columns: repeat(3, 1fr);
+      }
+
+      .google-review-cta {
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding: 18px 20px;
       }
 
       .final-cta .container {
@@ -2808,6 +2816,16 @@
         display: none;
       }
 
+      .local-map {
+        min-height: 0;
+        aspect-ratio: 1434 / 1097;
+      }
+
+      .local-map img {
+        min-height: 0;
+        object-position: center;
+      }
+
       .case-rail {
         margin-right: calc(var(--container-gutter) * -1);
         width: calc(100% + var(--container-gutter));
@@ -2893,7 +2911,7 @@
           <li><a class="nav-link" href="#zones">Zones</a></li>
           <li><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
-        <a class="btn btn-primary header-call" href="tel:+33688046639">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a>
+        <a class="btn btn-primary header-call" href="https://api.whatsapp.com/send/?phone=33688046639&text=Bonjour%2C+je+cherche+un+devis+pour+une+recherche+de+fuite.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a>
         <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="menu-mobile" aria-expanded="false">
           <span aria-hidden="true"></span>
         </button>
@@ -2906,7 +2924,7 @@
         <a href="#confiance">Confiance</a>
         <a href="#zones">Zones d'intervention</a>
         <a href="#contact">Contact</a>
-        <a class="btn btn-primary" href="tel:+33688046639">Appeler&nbsp;DFT</a>
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=33688046639&text=Bonjour%2C+je+cherche+un+devis+pour+une+recherche+de+fuite.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">Appeler&nbsp;DFT</a>
       </div>
     </div>
   </header>
@@ -2919,10 +2937,10 @@
       <div class="container hero-inner">
         <div class="hero-copy" data-reveal>
           <p class="hero-kicker">Dépannage Fuite Toiture</p>
-          <h1 id="hero-title">L’expertise au service de votre étanchéité.</h1>
+          <h1 id="hero-title">L’expertise au service de votre toiture.</h1>
           <p class="hero-lead">Dépannage Fuite Toiture est une équipe spécialisée dans la protection et la pérennité de l’habitat. Une infiltration ne prévient pas et peut provoquer des dégâts structurels importants.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="tel:+33688046639">Appeler&nbsp;maintenant</a>
+            <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=33688046639&text=Bonjour%2C+je+cherche+un+devis+pour+une+recherche+de+fuite.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">Appeler&nbsp;maintenant</a>
             <a class="btn btn-secondary" href="#diagnostic" data-diagnostic-open>Décrire ma situation</a>
           </div>
           <div class="hero-status">
@@ -2932,7 +2950,7 @@
         </div>
         <aside class="hero-call-card tilt" data-tilt data-reveal>
           <span class="call-label">Contact direct 24h/24</span>
-          <a class="hero-phone" href="tel:+33688046639">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a>
+          <a class="hero-phone" href="https://api.whatsapp.com/send/?phone=33688046639&text=Bonjour%2C+je+cherche+un+devis+pour+une+recherche+de+fuite.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a>
           <p>Nos équipes écoutent la situation, repèrent les signes utiles et organisent l’intervention selon l’urgence constatée.</p>
           <small>Réponse adaptée selon les accès et le contexte.</small>
         </aside>
@@ -3025,7 +3043,7 @@
       <div class="container">
         <div data-reveal>
           <p class="eyebrow">Services DFT</p>
-          <h2 class="section-title" id="services-title">Une intervention ciblée pour limiter les dégâts et réparer proprement.</h2>
+          <h2 class="section-title" id="services-title">Une intervention ciblée pour limiter les dégâts et réparer dans les règles de l'art.</h2>
           <p class="section-lead">DFT intervient sur la localisation de fuite, la protection provisoire et les réparations nécessaires en toiture, étanchéité et zinguerie.</p>
         </div>
 
@@ -3280,15 +3298,15 @@
           </article>
           <article class="step" data-reveal>
             <h3>On évalue l’urgence</h3>
-            <p>DFT vous indique les premières précautions et organise l’intervention selon la situation et le secteur.</p>
+            <p>DFT vous indique les premières précautions et organise l’intervention selon la situation.</p>
           </article>
           <article class="step" data-reveal>
             <h3>On recherche l’origine</h3>
-            <p>DFT contrôle les zones sensibles et croise les constats pour identifier la cause la plus probable.</p>
+            <p>DFT contrôle les zones sensibles et croise les constats pour identifier l'origine exacte de la fuite.</p>
           </article>
           <article class="step" data-reveal>
             <h3>On sécurise, on répare</h3>
-            <p>La toiture est protégée puis réparée selon le constat.</p>
+            <p>La toiture est protégée ou bachée, puis selon le constat, un devis pour les réparations définitives est fournit.</p>
           </article>
         </div>
       </div>
@@ -3299,11 +3317,11 @@
         <div class="diagnostic-intro" data-reveal>
           <p class="eyebrow">Demande de diagnostic</p>
           <h2 id="diagnostic-request-title">Décrire la situation en moins d’une minute.</h2>
-          <p>Un flow court pour transmettre les bons éléments sans formulaire administratif. Une trace, une adresse, un contact suffisent pour organiser la suite utile.</p>
+          <p>Expliquez en quelques mots votre situation.</p>
           <ul class="diagnostic-points">
             <li>Deux étapes seulement, avec les informations vraiment utiles.</li>
             <li>Priorité donnée aux fuites actives, infiltrations visibles et protections immédiates.</li>
-            <li>Vous pouvez aussi demander un suivi préventif.</li>
+            <li>Vous pouvez aussi demander un diagnostique préventif de votre toiture.</li>
           </ul>
         </div>
 
@@ -3340,8 +3358,8 @@
                       <span>Vérification toiture</span>
                     </label>
                     <label class="choice-option">
-                      <input type="radio" name="situation" value="Contrat d'entretien">
-                      <span>Contrat d’entretien</span>
+                      <input type="radio" name="situation" value="Entretien toiture">
+                      <span>Entretien toiture</span>
                     </label>
                     <label class="choice-option">
                       <input type="radio" name="situation" value="Autre">
@@ -3447,36 +3465,42 @@
             <span>Loiret</span>
           </div>
         </div>
-        <div class="local-map tilt" data-tilt data-reveal aria-hidden="true">
-          <span class="map-center" aria-hidden="true"></span>
-          <span class="map-label">Saran</span>
-          <span class="map-label">Fleury-les-Aubrais</span>
-          <span class="map-label">Olivet</span>
-          <span class="map-label">Saint-Jean-de-Braye</span>
-        </div>
+        <figure class="local-map" data-reveal>
+          <img src="assets/images/carte-loiret-zone-intervention.webp" width="1434" height="1097" alt="Carte du Loiret et des communes d'intervention DFT" loading="lazy" decoding="async">
+        </figure>
       </div>
     </section>
 
     <section class="section reviews" aria-labelledby="reviews-title">
       <div class="container">
         <div data-reveal>
-          <p class="eyebrow">Clarté avant travaux</p>
-          <h2 class="section-title" id="reviews-title">Ce que DFT clarifie dès le premier échange.</h2>
-          <p class="review-note">Les avis clients réels seront intégrés uniquement lorsqu’ils seront fournis ou vérifiés.</p>
+          <p class="eyebrow">Retours clients</p>
+          <h2 class="section-title" id="reviews-title">Ils nous ont fait confiance.</h2>
+          <p class="section-lead">Quelques retours issus d’échanges réels avec des clients, anonymisés par respect de la confidentialité.</p>
         </div>
         <div class="reviews-grid">
           <article class="review" data-reveal>
-            <strong>La situation</strong>
-            <p>Où se trouve la trace, depuis quand elle évolue et quels éléments peuvent indiquer une fuite active.</p>
+            <blockquote class="review-quote">
+              <p>“Je recommande vivement DFT pour leur sérieux et la qualité du travail réalisé.”</p>
+            </blockquote>
+            <footer class="review-source">Client particulier — Orléans</footer>
           </article>
           <article class="review" data-reveal>
-            <strong>La priorité</strong>
-            <p>Ce qui doit être protégé rapidement et ce qui peut attendre un contrôle plus complet.</p>
+            <blockquote class="review-quote">
+              <p>“DFT a pris le temps de chercher l’origine de la fuite avant de proposer une solution.”</p>
+            </blockquote>
+            <footer class="review-source">Client particulier — Loiret</footer>
           </article>
           <article class="review" data-reveal>
-            <strong>La suite utile</strong>
-            <p>Localisation, protection, réparation ou suivi selon ce qui est constaté.</p>
+            <blockquote class="review-quote">
+              <p>“Service sérieux, diagnostic clair et travail de qualité.”</p>
+            </blockquote>
+            <footer class="review-source">Client professionnel — Agglomération d’Orléans</footer>
           </article>
+        </div>
+        <div class="google-review-cta" data-reveal>
+          <p class="google-review-prompt">Après une intervention DFT, vous pouvez partager votre retour publiquement.</p>
+          <a class="btn btn-primary" href="https://g.page/r/CQ1TMY36Tw6YEBM/review" target="_blank" rel="noopener noreferrer">Laisser un avis Google</a>
         </div>
       </div>
     </section>
@@ -3488,7 +3512,7 @@
           <p>Contact direct pour cadrer le diagnostic, la protection provisoire ou la réparation.</p>
         </div>
         <div class="final-actions">
-          <a class="btn btn-primary" href="tel:+33688046639">Appeler&nbsp;DFT</a>
+          <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=33688046639&text=Bonjour%2C+je+cherche+un+devis+pour+une+recherche+de+fuite.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">Appeler&nbsp;DFT</a>
           <a class="btn btn-secondary" href="#diagnostic" data-diagnostic-open>Décrire ma situation</a>
         </div>
       </div>
@@ -3511,7 +3535,7 @@
         </div>
         <div>
           <h3>Contact</h3>
-          <p><strong>Téléphone</strong><a href="tel:+33688046639">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a></p>
+          <p><strong>Téléphone</strong><a href="https://api.whatsapp.com/send/?phone=33688046639&text=Bonjour%2C+je+cherche+un+devis+pour+une+recherche+de+fuite.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">06&nbsp;88&nbsp;04&nbsp;66&nbsp;39</a></p>
           <p><strong>Email</strong><a href="mailto:contact@dft45.net">contact@dft45.net</a></p>
           <p>Réponse adaptée selon la situation.</p>
         </div>
@@ -3523,6 +3547,7 @@
             <li>Mise hors d’eau</li>
             <li>Protection provisoire</li>
             <li>Réparation toiture</li>
+            <li>Entretient diagnostique</li>
           </ul>
         </div>
         <div>
@@ -3564,7 +3589,7 @@
   </aside>
 
   <nav class="mobile-actions" aria-label="Actions rapides">
-    <a class="btn btn-primary" href="tel:+33688046639">Appeler</a>
+    <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=33688046639&text=Bonjour%2C+je+cherche+un+devis+pour+une+recherche+de+fuite.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">Appeler</a>
     <a class="btn btn-dark" href="#diagnostic" data-diagnostic-open>Diagnostic</a>
   </nav>
 
