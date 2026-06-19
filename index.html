@@ -1068,6 +1068,70 @@
       transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 700ms ease;
     }
 
+    .service-media.before-after {
+      cursor: pointer;
+      isolation: isolate;
+    }
+
+    .service-media.before-after:focus-visible {
+      outline: 3px solid rgba(255, 122, 0, 0.32);
+      outline-offset: 4px;
+    }
+
+    .service-media.before-after .after-image {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 420ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 700ms ease;
+    }
+
+    .service-media.before-after:hover .after-image,
+    .service-media.before-after:focus .after-image,
+    .service-media.before-after:focus-within .after-image {
+      opacity: 1;
+    }
+
+    .comparison-label {
+      position: absolute;
+      top: 12px;
+      z-index: 3;
+      padding: 7px 10px;
+      border-radius: 6px;
+      background: rgba(8, 43, 69, 0.88);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 1;
+      transition: opacity 240ms ease, transform 240ms ease;
+    }
+
+    .comparison-label.before-label {
+      left: 12px;
+    }
+
+    .comparison-label.after-label {
+      right: 12px;
+      opacity: 0;
+      transform: translateY(-4px);
+      background: rgba(255, 122, 0, 0.92);
+    }
+
+    .service-media.before-after:hover .before-label,
+    .service-media.before-after:focus .before-label,
+    .service-media.before-after:focus-within .before-label {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    .service-media.before-after:hover .after-label,
+    .service-media.before-after:focus .after-label,
+    .service-media.before-after:focus-within .after-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .service-text h3 {
       color: var(--blue-night);
       font-size: 1.55rem;
@@ -1525,6 +1589,39 @@
       color: var(--blue-night);
       font-size: 0.92rem;
       font-weight: 800;
+    }
+
+    .city-tags [hidden] {
+      display: none;
+    }
+
+    .zones-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      margin-top: 18px;
+      padding: 10px 14px;
+      border: 1px solid rgba(8, 43, 69, 0.22);
+      border-radius: 6px;
+      color: var(--blue-night);
+      background: var(--white);
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .zones-toggle:hover {
+      border-color: rgba(255, 122, 0, 0.55);
+      box-shadow: 0 12px 26px rgba(8, 43, 69, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .zones-toggle:focus-visible {
+      outline: 3px solid rgba(255, 122, 0, 0.28);
+      outline-offset: 3px;
     }
 
     .local-map {
@@ -3114,30 +3211,33 @@
               <div class="pillar-head">
                 <div class="pillar-meta">
                   <span class="pillar-index">1</span>
-                  <span class="pillar-state">Repérer</span>
+                  <span class="pillar-state">Repérer Et Sécuriser</span>
                 </div>
                 <span class="pillar-sign pillar-sign-locate" aria-hidden="true">
                   <span class="pillar-sign-mark"></span>
                 </span>
               </div>
               <div class="pillar-copy">
-                <strong>La Recherche de Fuite</strong>
-                <p>Nous localisons l’origine exacte des infiltrations<br>(toitures terrasses, tuiles, ardoises, zinguerie)<br>grâce à un diagnostic technique approfondi.</p>
+                <strong>Intervention d’Urgence et Recherche de Fuite</strong>
+                <p>Nous mobilisons nos équipes dans les plus brefs délais pour réaliser des mises hors d’eau et des réparations immédiates afin de stopper vos sinistres. Nous localisons l’origine exacte des infiltrations<br>(toitures terrasses, tuiles, ardoises, zinguerie)<br>grâce à un diagnostic technique approfondi.</p>
               </div>
             </article>
             <article class="expertise-pillar secure">
               <div class="pillar-head">
                 <div class="pillar-meta">
                   <span class="pillar-index">2</span>
-                  <span class="pillar-state">Sécuriser</span>
+                  <span class="pillar-state">Entretien diagnostique</span>
                 </div>
                 <span class="pillar-sign pillar-sign-secure" aria-hidden="true">
                   <span class="pillar-sign-mark"></span>
                 </span>
               </div>
               <div class="pillar-copy">
-                <strong>L’Intervention d’Urgence</strong>
-                <p>Nous mobilisons nos équipes dans les plus brefs délais pour réaliser des mises hors d’eau et des réparations immédiates afin de stopper vos sinistres.</p>
+                <strong>Entretien diagnostique toiture</strong>
+                <p>L’entretien diagnostic consiste à nettoyer toutes les voies d’évacuation des eaux pluviales. 
+                  
+                  Il inclut un contrôle complet de la toiture portant sur tous les points sensibles pouvant provoquer une infiltration. 
+                  L’objectif est de prévenir les désordres, garantir une bonne évacuation des eaux et vérifier la conformité et l’état général de l’ensemble des ouvrages de couverture.</p>
               </div>
             </article>
           </div>
@@ -3150,7 +3250,7 @@
         <div class="problem-copy" data-reveal>
           <p class="eyebrow">Services et garanties</p>
           <h2 class="section-title" id="problem-title">Une prise en charge claire du sinistre au suivi.</h2>
-          <p class="section-lead">Nous accompagnons particuliers et professionnels avec responsabilité civile professionnelle et garantie décennale.</p>
+          <p class="section-lead">Nous accompagnons particuliers et professionnels</p>
           <div class="problem-points">
             <div class="problem-point">
               <h3>Intervention rapide</h3>
@@ -3169,16 +3269,16 @@
 
         <div class="damage-grid">
           <figure class="damage-photo" data-reveal>
-            <img src="assets/images/infiltration-fenetre.webp" width="540" height="720" alt="Infiltration intérieure visible autour d'une fenêtre" loading="lazy" decoding="async">
-            <strong>Infiltration fenêtre</strong>
+            <img src="assets/images/garantie-controle-faitage.jpeg" width="1200" height="1600" alt="Contrôle d'un faîtage de toiture avant intervention" loading="lazy" decoding="async">
+            <strong>Contrôle toiture</strong>
           </figure>
           <figure class="damage-photo" data-reveal>
-            <img src="assets/images/degat-interieur.webp" width="540" height="720" alt="Dégât d'eau visible au-dessus d'une fenêtre" loading="lazy" decoding="async">
-            <strong>Dégât intérieur</strong>
+            <img src="assets/images/garantie-mise-hors-eau-bache.jpeg" width="1200" height="1600" alt="Mise hors d'eau provisoire sur une toiture en tuiles" loading="lazy" decoding="async">
+            <strong>Mise hors d’eau</strong>
           </figure>
           <figure class="damage-photo" data-reveal>
-            <img src="assets/images/infiltration-plafond.webp" width="540" height="720" alt="Trace d'humidité au plafond" loading="lazy" decoding="async">
-            <strong>Plafond taché</strong>
+            <img src="assets/images/garantie-reprise-tuile.jpeg" width="1200" height="1600" alt="Reprise localisée de tuiles sur une toiture" loading="lazy" decoding="async">
+            <strong>Reprise localisée</strong>
           </figure>
         </div>
       </div>
@@ -3187,68 +3287,74 @@
     <section class="section services" id="services" aria-labelledby="services-title" data-section>
       <div class="container">
         <div data-reveal>
-          <p class="eyebrow">Services DFT</p>
-          <h2 class="section-title" id="services-title">Une intervention ciblée pour limiter les dégâts et réparer dans les règles de l'art.</h2>
-          <p class="section-lead">DFT intervient sur la localisation de fuite, la protection provisoire et les réparations nécessaires en toiture, étanchéité et zinguerie.</p>
+          <p class="eyebrow">Entretien diagnostic toiture</p>
+          <h2 class="section-title" id="services-title">Un contrôle complet pour prévenir les infiltrations et préserver les ouvrages de couverture.</h2>
+          <p class="section-lead">DFT réalise un entretien diagnostic de toiture pour vérifier les points sensibles, nettoyer les évacuations et contrôler l’état général des éléments exposés aux eaux pluviales.</p>
         </div>
 
         <div class="services-list">
           <article class="service" data-reveal>
             <div class="service-media tilt" data-tilt>
-              <img src="assets/images/perforation-noue-zinc-recherche-fuite.webp" width="1050" height="1400" alt="Perforation visible sur une noue zinc lors d'une recherche de fuite toiture" loading="lazy" decoding="async">
+              <img src="assets/images/controle-elements-toiture-drone.jpeg" width="2000" height="1500" alt="Vue drone des éléments de toiture à contrôler" loading="lazy" decoding="async">
             </div>
             <div class="service-text">
-              <h3>Localisation précise</h3>
-              <p>Localiser le point de départ des infiltrations avant d’engager les travaux, avec un diagnostic adapté au support et à l’accès.</p>
+              <h3>Contrôle des éléments de toiture</h3>
+              <p>Contrôle complet des noues, sorties de toit, fenêtres de toit, cheminées, arêtiers, chéneaux, gouttières et points sensibles pouvant provoquer une infiltration.</p>
               <ul class="benefits">
-                <li>Supports de toiture variés</li>
-                <li>Diagnostic précis avant réparation</li>
-                <li>Lecture des points sensibles</li>
+                <li>Noues et arêtiers</li>
+                <li>Sorties de toit et cheminées</li>
+                <li>Fenêtres de toit et raccords</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service" data-reveal>
+            <div class="service-media before-after tilt" data-tilt tabindex="0" aria-label="Comparaison avant après d'un nettoyage d'évacuation de toiture">
+              <img src="assets/images/nettoyage-evacuations-avant.jpeg" width="1200" height="1600" alt="Évacuation de toiture avant nettoyage avec feuilles et eau stagnante" loading="lazy" decoding="async">
+              <img class="after-image" src="assets/images/nettoyage-evacuations-apres.jpeg" width="1200" height="1600" alt="Évacuation de toiture après nettoyage avec voie d'eau dégagée" loading="lazy" decoding="async">
+              <span class="comparison-label before-label">Avant</span>
+              <span class="comparison-label after-label">Après</span>
+            </div>
+            <div class="service-text">
+              <h3>Nettoyage des évacuations</h3>
+              <p>Nettoyage des voies d’eau de la toiture : gouttières, chéneaux, naissances et zones d’évacuation annexes.</p>
+              <ul class="benefits">
+                <li>Gouttières dégagées</li>
+                <li>Naissances contrôlées</li>
+                <li>Écoulement des eaux vérifié</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service" data-reveal>
+            <div class="service-media before-after tilt" data-tilt tabindex="0" aria-label="Comparaison avant après d'un démoussage de toiture">
+              <img src="assets/images/demoussage-toiture-avant.jpeg" width="2048" height="1536" alt="Toiture avant démoussage avec mousses et dépôts visibles" loading="lazy" decoding="async">
+              <img class="after-image" src="assets/images/demoussage-toiture-apres.jpeg" width="2000" height="1500" alt="Toiture après démoussage avec couverture nettoyée" loading="lazy" decoding="async">
+              <span class="comparison-label before-label">Avant</span>
+              <span class="comparison-label after-label">Après</span>
+            </div>
+            <div class="service-text">
+              <h3>Démoussage de la toiture</h3>
+              <p>Le démoussage consiste à éliminer les mousses, lichens et dépôts accumulés sur la couverture afin de préserver les matériaux, limiter les risques d’infiltration et prolonger la durée de vie de la toiture.</p>
+              <ul class="benefits">
+                <li>Toiture plus saine et mieux protégée</li>
+                <li>Écoulement des eaux amélioré</li>
+                <li>Durée de vie de la couverture prolongée</li>
               </ul>
             </div>
           </article>
 
           <article class="service" data-reveal>
             <div class="service-media tilt" data-tilt>
-              <img src="assets/images/noue-zinc-tuiles-canal-toiture.webp" width="1050" height="1400" alt="Noue zinc entre deux pans de toiture en tuiles canal" loading="lazy" decoding="async">
+              <img src="assets/images/inspection-zone-difficile.webp" width="540" height="720" alt="Inspection d'une zone difficile d'accès sur une toiture" loading="lazy" decoding="async">
             </div>
             <div class="service-text">
-              <h3>Protection rapide</h3>
-              <p>Mobiliser une intervention dans les plus brefs délais pour sécuriser la toiture ou réparer immédiatement afin de stopper le sinistre.</p>
+              <h3>Prévention et gestion des eaux</h3>
+              <p>L’objectif est de prévenir les désordres, assurer une bonne évacuation des eaux pluviales et vérifier l’état général des ouvrages de couverture.</p>
               <ul class="benefits">
-                <li>Protection rapide de l’habitat</li>
-                <li>Priorité aux dégâts actifs</li>
-                <li>Réponse selon l’urgence constatée</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="service" data-reveal>
-            <div class="service-media tilt" data-tilt>
-              <img src="assets/images/toiture-tuiles-anciennes-gouttiere-zinc.webp" width="1050" height="1400" alt="Toiture ancienne en tuiles avec gouttière zinc et points sensibles" loading="lazy" decoding="async">
-            </div>
-            <div class="service-text">
-              <h3>Protection provisoire</h3>
-              <p>Protéger temporairement une toiture abîmée quand la réparation définitive nécessite une étape préparatoire.</p>
-              <ul class="benefits">
-                <li>Sécurisation rapide</li>
-                <li>Protection de l’intérieur</li>
-                <li>Préparation de la réparation durable</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="service" data-reveal>
-            <div class="service-media tilt" data-tilt>
-              <img src="assets/images/tuile-faitage-cassee-toiture.webp" width="768" height="1024" alt="Tuile de faîtage cassée sur toiture" loading="lazy" decoding="async">
-            </div>
-            <div class="service-text">
-              <h3>Réparation toiture &amp; étanchéité</h3>
-              <p>Traiter la cause de la fuite avec une intervention adaptée au support et au point d’entrée.</p>
-              <ul class="benefits">
-                <li>Réparation toiture et points singuliers</li>
-                <li>Étanchéité et reprises localisées</li>
-                <li>Zinguerie selon le besoin constaté</li>
+                <li>Prévention des infiltrations</li>
+                <li>Évacuation des eaux pluviales</li>
+                <li>Vérification générale de la couverture</li>
               </ul>
             </div>
           </article>
@@ -3261,8 +3367,9 @@
       <div class="container proof-layout">
         <div class="proof-copy" data-reveal>
           <p class="eyebrow">Diagnostic avant réparation</p>
-          <h2 class="section-title" id="terrain-title">Un repérage clair avant réparation, expliqué sans jargon inutile.</h2>
-          <p class="section-lead">DFT ne se limite pas à regarder la tache. Les traces intérieures sont croisées avec les points sensibles de la toiture pour orienter l’intervention avec précision.</p>
+          <h2 class="section-title" id="terrain-title">Comprendre l’origine de la fuite avant d’intervenir</h2>
+          <p class="section-lead">Avant de réparer, nous suivons un contrôle précis pour éviter les interventions au hasard.
+L’objectif est simple : identifier la cause exacte, vérifier les points sensibles, puis expliquer clairement quoi faire. </p>
         </div>
         <div class="proof-strip evidence-strip" role="group" aria-label="Constats terrain réalisés par DFT">
           <figure class="proof-shot tilt" data-tilt data-reveal>
@@ -3338,33 +3445,6 @@
               <p>Les raccords, rives et évacuations demandent une lecture précise du support.</p>
             </figcaption>
           </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="section overview-proof" aria-labelledby="overview-title">
-      <div class="container overview-layout">
-        <div class="overview-copy" data-reveal>
-          <p class="eyebrow">Inspection drone</p>
-          <h2 class="section-title" id="overview-title">Voir les zones de toiture invisibles depuis le sol.</h2>
-          <p class="section-lead">Dans les centres-villes, les cours intérieures ou les bâtiments entourés par le voisinage, certaines parties de toiture restent difficiles à observer directement. Quand la configuration le permet, DFT peut utiliser le drone pour visualiser les pans cachés, les noues, les solins, les chéneaux et les raccords sensibles.</p>
-          <p class="overview-note">Une aide visuelle pour mieux orienter la recherche de fuite, selon l’accès, la météo, le voisinage et le cadre autorisé de l’intervention.</p>
-        </div>
-        <div class="overview-media" data-reveal>
-          <figure class="overview-main tilt" data-tilt>
-            <img src="assets/images/toitures-anciennes-centre-ville.webp" width="1400" height="1050" alt="Toitures anciennes observées en centre-ville" loading="lazy" decoding="async">
-            <span class="image-label">Toitures anciennes observées</span>
-          </figure>
-          <div class="overview-thumbs">
-            <figure class="overview-thumb tilt" data-tilt>
-              <img src="assets/images/toiture-ancienne-cour.webp" width="1400" height="1050" alt="Toiture ancienne autour d'une cour" loading="lazy" decoding="async">
-              <span class="image-label">Accès complexe</span>
-            </figure>
-            <figure class="overview-thumb tilt" data-tilt>
-              <img src="assets/images/toiture-ancienne-lucarne.webp" width="1400" height="1050" alt="Toiture ancienne avec lucarne et raccords" loading="lazy" decoding="async">
-              <span class="image-label">Lucarne et raccords</span>
-            </figure>
-          </div>
         </div>
       </div>
     </section>
@@ -3599,16 +3679,33 @@
         <div data-reveal>
           <p class="eyebrow">Zone d’intervention</p>
           <h2 class="section-title" id="zones-title">Intervention toiture dans le Loiret</h2>
-          <p class="section-lead">DFT intervient pour les fuites de toiture, les infiltrations, la protection de l’habitat et l’entretien à Orléans et dans les communes proches.</p>
-          <div class="city-tags">
+          <p class="section-lead">DFT intervient pour les fuites de toiture, les infiltrations, la protection de l’habitat et l’entretien.</p>
+          <div class="city-tags" id="zones-city-list">
             <span>Orléans</span>
             <span>Fleury-les-Aubrais</span>
             <span>Saran</span>
             <span>Saint-Jean-de-Braye</span>
+            <span>Saint-Jean-de-la-Ruelle</span>
             <span>Olivet</span>
             <span>Saint-Cyr-en-Val</span>
-            <span>Loiret</span>
+            <span>La Chapelle-Saint-Mesmin</span>
+            <span data-zone-extra hidden>Ingré</span>
+            <span data-zone-extra hidden>Semoy</span>
+            <span data-zone-extra hidden>Chécy</span>
+            <span data-zone-extra hidden>Boigny-sur-Bionne</span>
+            <span data-zone-extra hidden>Combleux</span>
+            <span data-zone-extra hidden>Sandillon</span>
+            <span data-zone-extra hidden>Saint-Denis-en-Val</span>
+            <span data-zone-extra hidden>Meung-sur-Loire</span>
+            <span data-zone-extra hidden>Beaugency</span>
+            <span data-zone-extra hidden>Cléry-Saint-André</span>
+            <span data-zone-extra hidden>Pithiviers</span>
+            <span data-zone-extra hidden>Montargis</span>
+            <span data-zone-extra hidden>Gien</span>
+            <span data-zone-extra hidden>Sully-sur-Loire</span>
+            <span data-zone-extra hidden>Châteauneuf-sur-Loire</span>
           </div>
+          <button class="zones-toggle" type="button" aria-expanded="false" aria-controls="zones-city-list" data-zones-toggle>Voir plus de communes</button>
         </div>
         <figure class="local-map" data-reveal>
           <img src="assets/images/carte-loiret-zone-intervention.webp" width="1434" height="1097" alt="Carte du Loiret et des communes d'intervention DFT" loading="lazy" decoding="async">
@@ -3720,12 +3817,10 @@
           <ul>
             <li>DFT / Dépannage Fuite Toiture</li>
             <li>SIREN 100282742</li>
-            <li>Photos d’interventions et constats fournis par l’entreprise</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="legal-note">Les délais et moyens d’intervention dépendent de la situation, de la localisation, des accès et des disponibilités. Aucune certification, garantie horaire ou avis client réel n’est affiché sans justificatif fourni.</p>
         <p class="footer-meta">© DFT — Dépannage Fuite Toiture</p>
       </div>
     </div>
@@ -4410,6 +4505,20 @@
       }
       window.addEventListener("resize", refreshViewportState);
       window.addEventListener("load", refreshViewportState);
+
+      const zonesToggle = document.querySelector("[data-zones-toggle]");
+      if (zonesToggle) {
+        const extraZones = document.querySelectorAll("[data-zone-extra]");
+        zonesToggle.addEventListener("click", function () {
+          const expanded = zonesToggle.getAttribute("aria-expanded") === "true";
+          extraZones.forEach(function (zone) {
+            zone.hidden = expanded;
+          });
+          zonesToggle.setAttribute("aria-expanded", String(!expanded));
+          zonesToggle.textContent = expanded ? "Voir plus de communes" : "Réduire la liste";
+          revealVisible();
+        });
+      }
 
       function setPointerVars(element, event) {
         const rect = element.getBoundingClientRect();
