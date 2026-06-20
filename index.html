@@ -1132,6 +1132,78 @@
       transform: translateY(0);
     }
 
+    .service-media.report-frame {
+      display: grid;
+      aspect-ratio: auto;
+      height: clamp(360px, 52vw, 520px);
+      overflow: hidden;
+      border: 1px solid rgba(8, 43, 69, 0.14);
+      background: #0B2840;
+    }
+
+    .report-frame::after {
+      display: none;
+    }
+
+    .report-frame-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 3;
+      max-width: calc(100% - 24px);
+      padding: 7px 10px;
+      border-radius: 6px;
+      background: rgba(8, 43, 69, 0.9);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 900;
+      line-height: 1.2;
+      pointer-events: none;
+    }
+
+    .report-scroll {
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 48px 18px 18px;
+      scrollbar-color: rgba(255, 122, 0, 0.65) rgba(255, 255, 255, 0.14);
+      scrollbar-width: thin;
+    }
+
+    .report-scroll::-webkit-scrollbar {
+      width: 9px;
+    }
+
+    .report-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .report-scroll::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(255, 122, 0, 0.68);
+    }
+
+    .service-media.report-frame .report-page {
+      display: block;
+      width: min(100%, 420px);
+      height: auto;
+      aspect-ratio: 900 / 1273;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      border-radius: 4px;
+      background: var(--white);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
+      transition: transform 220ms ease, filter 220ms ease;
+    }
+
+    .service-media.report-frame .report-page:last-child {
+      margin-bottom: 0;
+    }
+
+    .service-media.report-frame:hover .report-page {
+      transform: none;
+      filter: none;
+    }
+
     .service-text h3 {
       color: var(--blue-night);
       font-size: 1.55rem;
@@ -3345,8 +3417,19 @@
           </article>
 
           <article class="service" data-reveal>
-            <div class="service-media tilt" data-tilt>
-              <img src="assets/images/inspection-zone-difficile.webp" width="540" height="720" alt="Inspection d'une zone difficile d'accès sur une toiture" loading="lazy" decoding="async">
+            <div class="service-media report-frame">
+              <span class="report-frame-label">Exemple de relevé d’intervention anonymisé</span>
+              <div class="report-scroll" tabindex="0" aria-label="Faire défiler les pages du relevé d’intervention anonymisé">
+                <img class="report-page" src="assets/images/releve-intervention-page-01.webp" width="900" height="1273" alt="Page 1 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+                <img class="report-page" src="assets/images/releve-intervention-page-02.webp" width="900" height="1273" alt="Page 2 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+                <img class="report-page" src="assets/images/releve-intervention-page-03.webp" width="900" height="1273" alt="Page 3 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+                <img class="report-page" src="assets/images/releve-intervention-page-04.webp" width="900" height="1273" alt="Page 4 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+                <img class="report-page" src="assets/images/releve-intervention-page-05.webp" width="900" height="1273" alt="Page 5 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+                <img class="report-page" src="assets/images/releve-intervention-page-06.webp" width="900" height="1273" alt="Page 6 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+                <img class="report-page" src="assets/images/releve-intervention-page-07.webp" width="900" height="1273" alt="Page 7 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+                <img class="report-page" src="assets/images/releve-intervention-page-08.webp" width="900" height="1273" alt="Page 8 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+                <img class="report-page" src="assets/images/releve-intervention-page-09.webp" width="900" height="1273" alt="Page 9 du relevé d’intervention anonymisé" loading="lazy" decoding="async">
+              </div>
             </div>
             <div class="service-text">
               <h3>Prévention et gestion des eaux</h3>
@@ -3420,7 +3503,7 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
           <figure class="cause-card" data-reveal>
             <img src="assets/images/noue-zinc-tuiles-canal-toiture.webp" width="1050" height="1400" alt="Noue zinc entre deux pans de toiture en tuiles canal" loading="lazy" decoding="async">
             <figcaption>
-              <strong>Noue sur tuiles canal</strong>
+              <strong>Noue sur tuiles</strong>
               <p>Un raccord à vérifier avec méthode lorsque l’infiltration revient après la pluie.</p>
             </figcaption>
           </figure>
