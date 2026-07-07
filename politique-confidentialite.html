@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de confidentialité - DFT</title>
+  <meta name="description" content="Politique de confidentialité du site DFT, Dépannage Fuite Toiture à Orléans.">
+  <meta name="theme-color" content="#082B45">
+  <link rel="canonical" href="https://dft45.net/politique-confidentialite.html">
+  <link rel="icon" href="assets/logo/logo-dft.png" type="image/png">
+  <style>
+    :root {
+      --blue-night: #082B45;
+      --blue-roof: #0F4C75;
+      --off-white: #F7F8FA;
+      --text-gray: #4B5563;
+      --orange: #FF7A00;
+      --orange-text: #A84B00;
+      --black-soft: #111827;
+      --white: #FFFFFF;
+      --line: rgba(8, 43, 69, 0.14);
+      --shadow: 0 18px 45px rgba(8, 43, 69, 0.12);
+      --site-max: 1160px;
+      --site-gutter: max(16px, calc((100vw - var(--site-max)) / 2));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--black-soft);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(247, 248, 250, 0.94) 320px),
+        var(--off-white);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: clip;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 3px solid rgba(255, 122, 0, 0.42);
+      outline-offset: 3px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    p,
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    ul {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      margin-top: 9px;
+      padding-left: 18px;
+      color: var(--text-gray);
+      line-height: 1.55;
+    }
+
+    li::before {
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+      content: "";
+    }
+
+    .container {
+      width: min(var(--site-max), calc(100% - var(--site-gutter) - var(--site-gutter)));
+      margin: 0 auto;
+    }
+
+    .legal-header {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(255, 122, 0, 0.12), transparent 28%),
+        linear-gradient(90deg, rgba(8, 43, 69, 0.98), rgba(8, 43, 69, 0.92)),
+        var(--blue-night);
+      isolation: isolate;
+    }
+
+    .legal-header::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 24px);
+      content: "";
+      opacity: 0.16;
+    }
+
+    .legal-header::after {
+      position: absolute;
+      right: -120px;
+      bottom: -210px;
+      z-index: -1;
+      width: 440px;
+      height: 440px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .legal-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(8, 43, 69, 0.82);
+      backdrop-filter: blur(16px);
+    }
+
+    .legal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      padding: 4px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.96);
+      object-fit: cover;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+
+    .brand span {
+      display: block;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    .back-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 6px;
+      color: var(--white);
+      font-size: 0.92rem;
+      font-weight: 850;
+      text-decoration: none;
+      transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .back-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.54);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero {
+      display: grid;
+      gap: 22px;
+      max-width: 780px;
+      padding: clamp(58px, 8vw, 92px) 0 clamp(54px, 7vw, 82px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #FFD5AD;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 30px;
+      height: 2px;
+      background: var(--orange);
+      content: "";
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.04;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+
+    .hero-lead {
+      max-width: 650px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: clamp(1rem, 2vw, 1.14rem);
+      line-height: 1.65;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      padding: 0 11px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.07);
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.84rem;
+      font-weight: 820;
+    }
+
+    main {
+      padding: clamp(42px, 6vw, 72px) 0 clamp(70px, 8vw, 104px);
+    }
+
+    .legal-layout {
+      display: grid;
+      gap: clamp(24px, 4vw, 44px);
+      align-items: start;
+    }
+
+    .legal-aside {
+      position: relative;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 16px 36px rgba(8, 43, 69, 0.07);
+    }
+
+    .legal-aside strong {
+      display: block;
+      color: var(--blue-night);
+      font-size: 0.78rem;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .toc {
+      display: grid;
+      gap: 2px;
+      margin-top: 12px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 8px 0;
+      border-top: 1px solid rgba(8, 43, 69, 0.08);
+      color: var(--text-gray);
+      font-size: 0.93rem;
+      font-weight: 760;
+      transition: color 180ms ease, padding-left 180ms ease;
+    }
+
+    .toc a:hover,
+    .toc a:focus-visible {
+      color: var(--blue-roof);
+      padding-left: 6px;
+    }
+
+    .legal-content {
+      display: grid;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    section {
+      position: relative;
+      scroll-margin-top: 96px;
+      padding: clamp(22px, 3vw, 30px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 18px 45px rgba(8, 43, 69, 0.07);
+    }
+
+    section::before {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(90deg, var(--orange), rgba(255, 122, 0, 0.12));
+      content: "";
+    }
+
+    .intro-card {
+      border-color: rgba(255, 122, 0, 0.24);
+      background:
+        linear-gradient(135deg, rgba(255, 122, 0, 0.08), transparent 42%),
+        var(--white);
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      color: var(--blue-night);
+      font-size: clamp(1.18rem, 2vw, 1.45rem);
+      line-height: 1.2;
+      font-weight: 920;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: var(--text-gray);
+      font-size: 1rem;
+    }
+
+    .legal-card {
+      display: grid;
+      gap: 6px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(247, 248, 250, 0.72);
+    }
+
+    .legal-card strong {
+      color: var(--blue-night);
+      font-weight: 920;
+    }
+
+    .legal-card p:last-child,
+    section p:last-child {
+      margin-bottom: 0;
+    }
+
+    main a {
+      color: var(--blue-night);
+      font-weight: 800;
+      text-decoration: underline;
+      text-decoration-color: rgba(15, 76, 117, 0.34);
+      text-underline-offset: 3px;
+    }
+
+    .legal-footer {
+      position: relative;
+      overflow: hidden;
+      padding: 46px 0 58px;
+      color: rgba(255, 255, 255, 0.72);
+      background:
+        linear-gradient(135deg, rgba(255, 122, 0, 0.08), transparent 26%),
+        linear-gradient(180deg, #082B45, #051B2C 62%);
+    }
+
+    .legal-footer::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.58), transparent);
+      content: "";
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand img {
+      width: 50px;
+      height: 50px;
+      padding: 5px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.96);
+      object-fit: cover;
+    }
+
+    .footer-brand strong {
+      display: block;
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 920;
+    }
+
+    .footer-brand span {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 0.9rem;
+      font-weight: 760;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .legal-footer a {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      color: var(--white);
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.28);
+      text-underline-offset: 3px;
+    }
+
+    .legal-footer a:hover,
+    .legal-footer a:focus-visible {
+      color: #FFD2A6;
+      text-decoration-color: rgba(255, 122, 0, 0.86);
+    }
+
+    @media (min-width: 900px) {
+      .legal-layout {
+        grid-template-columns: minmax(210px, 260px) minmax(0, 1fr);
+      }
+
+      .legal-aside {
+        position: sticky;
+        top: 96px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .legal-nav {
+        min-height: auto;
+        align-items: stretch;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .back-link {
+        width: 100%;
+      }
+
+      .hero {
+        padding: 44px 0 52px;
+      }
+
+      .legal-aside {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="legal-header">
+    <div class="legal-topbar">
+      <div class="container">
+        <nav class="legal-nav" aria-label="Navigation principale">
+          <a class="brand" href="index.html" aria-label="Retour à l'accueil DFT">
+            <img src="assets/logo/logo-dft.png" width="50" height="50" alt="Logo DFT">
+            <span>
+              <strong>DFT</strong>
+              <span>Dépannage Fuite Toiture</span>
+            </span>
+          </a>
+          <a class="back-link" href="index.html">Retour au site</a>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+      <div class="hero">
+        <p class="eyebrow">Données personnelles</p>
+        <h1>Politique de confidentialité</h1>
+        <p class="hero-lead">Cette page explique de façon claire quelles données peuvent être transmises à DFT, pour quelles raisons elles sont utilisées et comment exercer vos droits.</p>
+        <div class="hero-meta" aria-label="Repères de la page">
+          <span>Dernière mise à jour : 08/07/2026</span>
+          <span>Données limitées aux demandes reçues</span>
+          <span>Aucune revente commerciale</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container legal-layout">
+      <aside class="legal-aside" aria-label="Sommaire">
+        <strong>Sommaire</strong>
+        <nav class="toc">
+          <a href="#introduction">Introduction</a>
+          <a href="#responsable">Responsable du traitement</a>
+          <a href="#donnees">Données collectées</a>
+          <a href="#finalites">Finalités</a>
+          <a href="#base-legale">Base légale</a>
+          <a href="#destinataires">Destinataires</a>
+          <a href="#conservation">Conservation</a>
+          <a href="#droits">Vos droits</a>
+          <a href="#cnil">Réclamation CNIL</a>
+        </nav>
+      </aside>
+      <div class="legal-content">
+      <section class="intro-card" id="introduction">
+        <h2>Une collecte limitée à vos demandes</h2>
+        <p>DEPANNAGE FUITE TOITURE accorde une importance particulière à la protection des données personnelles des utilisateurs de son site.</p>
+        <p>La présente politique explique quelles données peuvent être collectées, pourquoi elles sont utilisées, combien de temps elles sont conservées et quels sont vos droits.</p>
+      </section>
+
+      <section id="responsable">
+        <h2>Responsable du traitement</h2>
+        <div class="legal-card">
+          <p>Le responsable du traitement est :</p>
+          <p><strong>DEPANNAGE FUITE TOITURE</strong></p>
+          <p>SASU immatriculée sous le SIREN 100 227 842</p>
+          <p>Siège social : 2 rue Alfred de Vigny, 45100 Orléans</p>
+          <p>Contact pour les données personnelles : <a href="mailto:contact@dft45.net">contact@dft45.net</a></p>
+        </div>
+      </section>
+
+      <section id="donnees">
+        <h2>Données collectées</h2>
+        <p>Lorsque vous utilisez le formulaire de contact ou de demande de diagnostic, DEPANNAGE FUITE TOITURE peut collecter uniquement les informations nécessaires au traitement de votre demande.</p>
+        <p>Selon les informations que vous renseignez, les données concernées peuvent être :</p>
+        <ul>
+          <li>nom ou prénom ;</li>
+          <li>numéro de téléphone ;</li>
+          <li>adresse e-mail ;</li>
+          <li>adresse ou commune d’intervention ;</li>
+          <li>informations relatives à votre demande ;</li>
+          <li>photos ou documents transmis volontairement ;</li>
+          <li>contenu du message envoyé via le formulaire.</li>
+        </ul>
+        <p>DEPANNAGE FUITE TOITURE ne collecte pas de données sensibles via son site.</p>
+      </section>
+
+      <section id="finalites">
+        <h2>Finalités du traitement</h2>
+        <p>Les données transmises sont utilisées uniquement pour :</p>
+        <ul>
+          <li>répondre à votre demande ;</li>
+          <li>vous recontacter ;</li>
+          <li>évaluer une situation liée à une fuite, une infiltration ou une intervention toiture ;</li>
+          <li>organiser un rendez-vous ou une intervention ;</li>
+          <li>établir un devis si nécessaire ;</li>
+          <li>assurer le suivi de la relation client.</li>
+        </ul>
+      </section>
+
+      <section id="base-legale">
+        <h2>Base légale du traitement</h2>
+        <p>Les traitements réalisés reposent, selon les cas, sur :</p>
+        <ul>
+          <li>votre consentement lorsque vous envoyez volontairement une demande via le formulaire ;</li>
+          <li>l’exécution de mesures précontractuelles lorsque votre demande concerne un devis ou une intervention ;</li>
+          <li>l’intérêt légitime de DEPANNAGE FUITE TOITURE à répondre aux demandes reçues et assurer le suivi de ses clients ;</li>
+          <li>le respect d’obligations légales lorsque certaines données doivent être conservées à des fins comptables ou administratives.</li>
+        </ul>
+      </section>
+
+      <section id="destinataires">
+        <h2>Destinataires des données</h2>
+        <p>Les données collectées sont destinées uniquement à DEPANNAGE FUITE TOITURE.</p>
+        <p>Elles peuvent également être traitées par des prestataires techniques nécessaires au fonctionnement du site, notamment l’hébergeur du site ou le service de formulaire utilisé.</p>
+        <p>Les données ne sont pas vendues, louées ou cédées à des tiers à des fins commerciales.</p>
+      </section>
+
+      <section id="conservation">
+        <h2>Durée de conservation</h2>
+        <p>Les données liées à une simple demande de contact sont conservées pendant une durée maximale de 3 ans à compter du dernier échange avec l’utilisateur.</p>
+        <p>Les données liées à un devis, une facture ou une relation commerciale peuvent être conservées pendant la durée nécessaire au respect des obligations légales, comptables et fiscales applicables.</p>
+        <p>Les données transmises volontairement mais non nécessaires au traitement de la demande peuvent être supprimées plus rapidement.</p>
+      </section>
+
+      <section id="securite">
+        <h2>Sécurité des données</h2>
+        <p>DEPANNAGE FUITE TOITURE met en œuvre des mesures raisonnables pour protéger les données personnelles contre l’accès non autorisé, la perte, l’altération ou la divulgation.</p>
+        <p>Les données sont accessibles uniquement aux personnes ou prestataires ayant besoin d’y accéder pour traiter la demande.</p>
+      </section>
+
+      <section id="droits">
+        <h2>Vos droits</h2>
+        <p>Conformément au Règlement Général sur la Protection des Données et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+        <ul>
+          <li>droit d’accès à vos données ;</li>
+          <li>droit de rectification ;</li>
+          <li>droit d’effacement ;</li>
+          <li>droit d’opposition ;</li>
+          <li>droit à la limitation du traitement ;</li>
+          <li>droit à la portabilité lorsque ce droit est applicable ;</li>
+          <li>droit de retirer votre consentement lorsque le traitement repose sur celui-ci.</li>
+        </ul>
+        <p>Pour exercer vos droits, vous pouvez contacter : <a href="mailto:contact@dft45.net">contact@dft45.net</a></p>
+        <p>Une réponse vous sera apportée dans un délai d’un mois à compter de la réception de votre demande.</p>
+      </section>
+
+      <section id="cnil">
+        <h2>Réclamation auprès de la CNIL</h2>
+        <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la CNIL :</p>
+        <p>Commission Nationale de l’Informatique et des Libertés<br>3 Place de Fontenoy<br>TSA 80715<br>75334 Paris Cedex 07</p>
+        <p>Site internet : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">https://www.cnil.fr</a></p>
+      </section>
+
+      <section id="formulaire">
+        <h2>Formulaire de contact</h2>
+        <p>Les champs du formulaire sont destinés à permettre à DEPANNAGE FUITE TOITURE de comprendre votre demande et de vous recontacter.</p>
+        <p>Les informations strictement nécessaires au traitement de la demande peuvent être obligatoires. Sans ces informations, DEPANNAGE FUITE TOITURE pourrait ne pas être en mesure de répondre correctement à votre demande.</p>
+      </section>
+
+      <section id="transfert">
+        <h2>Transfert hors Union européenne</h2>
+        <p>Le site étant hébergé par un prestataire situé aux États-Unis, certaines données techniques peuvent être traitées hors de l’Union européenne dans le cadre de l’hébergement du site.</p>
+        <p>DEPANNAGE FUITE TOITURE veille à utiliser des prestataires techniques présentant des garanties adaptées en matière de protection des données.</p>
+      </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="legal-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <img src="assets/logo/logo-dft.png" width="50" height="50" alt="Logo DFT">
+        <div>
+          <strong>DFT</strong>
+          <span>Dépannage Fuite Toiture</span>
+        </div>
+      </div>
+      <div class="footer-links" aria-label="Pages légales">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        <a href="politique-cookies.html">Politique de cookies</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
