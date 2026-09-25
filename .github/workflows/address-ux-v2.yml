@@ -3,22 +3,59 @@ on:
   push:
     branches: [chatgpt/dft-address-ux-v2]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  contract:
+  browser-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 15
     steps:
-      - name: Inspect public geocoding contract
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Apply targeted page and test changes
+        run: python3 scripts/prepare-address-ux-v2.py
+      - name: JavaScript syntax
+        run: node --check assets/js/address-autocomplete.js
+      - name: Install browser test tools
+        run: |
+          python3 -m pip install playwright==1.57.0
+          python3 -m playwright install --with-deps chromium webkit
+      - name: Desktop and mobile regression tests
+        run: python3 tests/address_autocomplete.py
+      - name: Live IGN completion and numbered address contract
         run: |
           python3 - <<'PY'
           import json, urllib.request, urllib.parse
-          for text in ['rue de la republique', 'rue de la republique Orleans', '12 rue de la republique Orleans', 'Orleans', 'rue du 8 mai Orleans']:
-              params = {'text':text, 'type':'StreetAddress', 'maximumResponses':5, 'lonlat':'1.904,47.903'}
-              url = 'https://data.geopf.fr/geocodage/completion/?' + urllib.parse.urlencode(params)
-              print(url, flush=True)
-              print(urllib.request.urlopen(url, timeout=20).read().decode(), flush=True)
-          for path in ['completion/openapi', 'openapi']:
-              body = urllib.request.urlopen('https://data.geopf.fr/geocodage/' + path, timeout=20).read().decode()
-              print(path, body[:6000], flush=True)
+          cases = [
+              ('completion/', {'text':'rue de la republique Orleans', 'type':'StreetAddress', 'maximumResponses':10, 'lonlat':'1.904,47.903'}),
+              ('search', {'q':'12 rue de la republique Orleans', 'index':'address', 'type':'housenumber', 'limit':10, 'autocomplete':'true', 'lon':'1.904', 'lat':'47.903'})
+          ]
+          for path, params in cases:
+              url = 'https://data.geopf.fr/geocodage/' + path + '?' + urllib.parse.urlencode(params)
+              req = urllib.request.Request(url, headers={'Origin':'https://dft45.net'})
+              with urllib.request.urlopen(req, timeout=20) as response:
+                  data = json.load(response)
+                  print(path, response.status, 'CORS:', response.headers.get('Access-Control-Allow-Origin'))
+              if path == 'completion/':
+                  assert any(r.get('kind') == 'street' and r.get('country') == 'StreetAddress' and r.get('zipcode') == '45000' and r.get('street') for r in data['results']), data
+              else:
+                  assert any(f['properties'].get('housenumber') == '12' and f['properties'].get('postcode') == '45000' for f in data['features']), data
+              print(json.dumps(data, ensure_ascii=False))
           PY
+      - name: Record verified files only on working branch
+        run: |
+          test "$GITHUB_REF" = 'refs/heads/chatgpt/dft-address-ux-v2'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html tests/address_autocomplete.py
+          git commit -m 'Integrate verified address UX v2 page and regression suite'
+          git push origin HEAD:refs/heads/chatgpt/dft-address-ux-v2
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: address-ux-v2-validation
+          retention-days: 7
+          path: |
+            index.html
+            assets/js/address-autocomplete.js
+            tests/address_autocomplete.py
+            tests/address-results.json
+            tests/screenshots/
