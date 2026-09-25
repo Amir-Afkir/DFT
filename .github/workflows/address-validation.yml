@@ -11,7 +11,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Prepare targeted changes
-        run: python3 scripts/prepare-address.py
+        run: |
+          python3 scripts/prepare-address.py
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('assets/js/address-autocomplete.js')
+          source = path.read_text()
+          old = '    if (retry) retry.addEventListener("click", function () { input.focus(); queue(); });'
+          new = '''    if (retry) {
+                // Do not let blur-time error text move the button before the click lands.
+                retry.addEventListener("mousedown", function (event) { event.preventDefault(); });
+                retry.addEventListener("click", function () { input.focus({ preventScroll: true }); queue(); });
+              }'''
+          assert source.count(old) == 1
+          path.write_text(source.replace(old, new))
+          path = Path('tests/address_autocomplete.py')
+          source = path.read_text()
+          assert source.count('full_page=not mobile') == 1
+          assert source.count('full_page=True') == 1
+          source = source.replace('full_page=not mobile', 'full_page=False').replace('full_page=True', 'full_page=False')
+          path.write_text(source)
+          PY
       - name: Check JavaScript syntax
         run: node --check assets/js/address-autocomplete.js
       - name: Install browser test tools
@@ -24,12 +44,12 @@ jobs:
         run: |
           curl --fail --silent --show-error --max-time 20 'https://data.geopf.fr/geocodage/search?index=address&type=housenumber&limit=5&autocomplete=true&q=12%20rue%20de%20la%20Republique%2045000%20Orleans' -o /tmp/geocoding.json
           python3 -c 'import json; d=json.load(open("/tmp/geocoding.json")); assert any(f.get("properties",{}).get("type")=="housenumber" for f in d.get("features",[])); print(json.dumps(d,ensure_ascii=False))'
-      - name: Record tested page on working branch only
+      - name: Record tested files on working branch only
         run: |
           test "$GITHUB_REF" = 'refs/heads/chatgpt/dft-complete-address'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html
+          git add index.html assets/js/address-autocomplete.js tests/address_autocomplete.py
           git commit -m 'Integrate tested complete-address autocomplete'
           git push origin HEAD:refs/heads/chatgpt/dft-complete-address
       - uses: actions/upload-artifact@v4
@@ -40,5 +60,6 @@ jobs:
           path: |
             index.html
             assets/js/address-autocomplete.js
+            tests/address_autocomplete.py
             tests/address-results.json
             tests/screenshots/
