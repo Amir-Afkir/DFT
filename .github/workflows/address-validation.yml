@@ -1,0 +1,36 @@
+name: Address validation
+on:
+  push:
+    branches: [chatgpt/dft-complete-address]
+permissions:
+  contents: read
+jobs:
+  browser-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare targeted changes
+        if: hashFiles('scripts/prepare-address.py') != ''
+        run: python3 scripts/prepare-address.py
+      - name: Install browser test tools
+        if: hashFiles('tests/address_autocomplete.py') != ''
+        run: |
+          python3 -m pip install playwright==1.57.0
+          python3 -m playwright install --with-deps chromium webkit
+      - name: Test desktop and mobile
+        if: hashFiles('tests/address_autocomplete.py') != ''
+        run: python3 tests/address_autocomplete.py
+      - name: Check live geocoding service
+        run: |
+          curl --fail --silent --show-error --max-time 20 'https://data.geopf.fr/geocodage/search?index=address&type=housenumber&limit=5&autocomplete=true&q=12%20rue%20de%20la%20Republique%2045000%20Orleans' -o /tmp/geocoding.json
+          python3 -c 'import json; d=json.load(open("/tmp/geocoding.json")); assert any(f.get("properties",{}).get("type")=="housenumber" for f in d.get("features",[])); print(json.dumps(d,ensure_ascii=False))'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: address-validation
+          path: |
+            index.html
+            assets/js/address-autocomplete.js
+            tests/address-results.json
+            tests/screenshots/
