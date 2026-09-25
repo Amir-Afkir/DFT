@@ -3717,12 +3717,12 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
                   <div class="field" data-field>
                     <label for="diagnostic-address">Adresse complète <span class="field-help">(obligatoire)</span></label>
                     <div class="address-combobox" data-address-combobox>
-                      <input id="diagnostic-address" name="address" type="text" autocomplete="off" spellcheck="false" maxlength="240" placeholder="Ex. 12 rue de la République, 45000 Orléans" required role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="diagnostic-address-suggestions" aria-describedby="diagnostic-address-help diagnostic-address-error" aria-busy="false">
+                      <input id="diagnostic-address" name="address" type="text" autocomplete="street-address" enterkeyhint="done" spellcheck="false" maxlength="240" placeholder="Ex. 12 rue de la République, 45000 Orléans" required role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="diagnostic-address-suggestions" aria-describedby="diagnostic-address-help diagnostic-address-error" aria-busy="false">
                       <!-- Suggestions BAN asynchrones, un select natif ne convient pas. -->
                       <!-- [html-validate-disable-next prefer-native-element] -->
-                      <div class="address-suggestions" id="diagnostic-address-suggestions" role="listbox" aria-label="Adresses complètes proposées" data-address-suggestions hidden></div>
+                      <div class="address-suggestions" id="diagnostic-address-suggestions" role="listbox" aria-label="Rues et adresses proposées" data-address-suggestions hidden></div>
                     </div>
-                    <span class="field-help" id="diagnostic-address-help">Saisissez le numéro et la rue, puis sélectionnez l’adresse avec son code postal et sa commune.</span>
+                    <span class="field-help" id="diagnostic-address-help">Commencez par le numéro ou le nom de la rue, puis sélectionnez l’adresse complète. Orléans et le Loiret sont privilégiés.</span>
                     <span class="field-help address-status" id="diagnostic-address-status" role="status" aria-live="polite" aria-atomic="true"></span>
                     <span class="diagnostic-error" id="diagnostic-address-error" data-error-for="address" aria-live="polite"></span>
                     <button class="address-retry" id="diagnostic-address-retry" type="button" hidden>Réessayer la recherche</button>
@@ -3978,7 +3978,7 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
     <a class="btn btn-dark" href="#diagnostic" data-diagnostic-open>Diagnostic</a>
   </nav>
 
-  <script src="assets/js/address-autocomplete.js"></script>
+  <script src="assets/js/address-autocomplete.js?v=2"></script>
   <script>
     (function () {
       const toggle = document.querySelector(".nav-toggle");
@@ -4240,6 +4240,7 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
       mountDiagnosticPanel();
       if (typeof diagnosticMobile.addEventListener === "function") {
         diagnosticMobile.addEventListener("change", function () {
+          closeAddressSuggestions();
           closeDiagnosticSheet();
           mountDiagnosticPanel();
         });
@@ -4311,7 +4312,7 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
             setError("situation", "");
             const fieldset = diagnosticForm.querySelector(".choice-grid");
             if (fieldset) fieldset.removeAttribute("aria-invalid");
-          } else if (event.target.matches("input, textarea")) {
+          } else if (event.target !== addressInput && event.target.matches("input, textarea")) {
             validateInput(event.target, true);
           }
         });
