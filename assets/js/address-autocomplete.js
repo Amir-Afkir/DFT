@@ -250,7 +250,11 @@
     list.addEventListener("pointerdown", function () { touchingList = true; });
     document.addEventListener("pointerdown", function (event) { if (!box.contains(event.target)) close(); });
     document.addEventListener("focusin", function (event) { if (!box.contains(event.target)) close(); });
-    if (retry) retry.addEventListener("click", function () { input.focus(); queue(); });
+    if (retry) {
+      // Do not let blur-time error text move the button before the click lands.
+      retry.addEventListener("mousedown", function (event) { event.preventDefault(); });
+      retry.addEventListener("click", function () { input.focus({ preventScroll: true }); queue(); });
+    }
     if (input.form) input.form.addEventListener("reset", function () {
       close(); selected = null; touched = false; announce("");
       if (assistance) assistance.hidden = true;

@@ -65,7 +65,7 @@ def scenarios(context, mobile, prefix):
             results.append({'browser_viewport': prefix, 'test': name, 'passed': True})
             print('PASS', prefix, name, flush=True)
         except Exception:
-            page.screenshot(path=str(OUT / f'{prefix}-{name}-failure.png'), full_page=True)
+            page.screenshot(path=str(OUT / f'{prefix}-{name}-failure.png'), full_page=False)
             results.append({'browser_viewport': prefix, 'test': name, 'passed': False, 'error': traceback.format_exc()})
             print('FAIL', prefix, name, results[-1]['error'], flush=True)
         finally:
@@ -118,7 +118,7 @@ def scenarios(context, mobile, prefix):
         box = first.bounding_box()
         assert box and box['height'] >= 44
         assert box['x'] >= 0 and box['x'] + box['width'] <= page.viewport_size['width'] + 1
-        page.screenshot(path=str(OUT / f'{prefix}-suggestions.png'), full_page=not mobile)
+        page.screenshot(path=str(OUT / f'{prefix}-suggestions.png'), full_page=False)
         if mobile:
             # A touch press / scroll start must not select anything.
             first.dispatch_event('pointerdown', {'pointerType': 'touch'})

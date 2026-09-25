@@ -2046,6 +2046,7 @@
 
     .address-combobox {
       position: relative;
+      min-width: 0;
     }
 
     .address-combobox input {
@@ -2072,14 +2073,15 @@
     }
 
     .address-suggestions {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      left: 0;
+      /* Stay in the scrollable form, above the mobile action footer. */
+      position: relative;
+      margin-top: 8px;
+      min-width: 0;
       z-index: 35;
       display: grid;
       gap: 4px;
-      max-height: min(260px, 42vh);
+      max-height: min(260px, 36vh);
+      max-height: min(260px, 36dvh);
       overflow-y: auto;
       overscroll-behavior: contain;
       padding: 7px;
@@ -2097,6 +2099,10 @@
     .address-suggestion {
       display: grid;
       gap: 2px;
+      min-height: 48px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      touch-action: pan-y;
       padding: 11px 12px;
       border-radius: 8px;
       color: var(--black-soft);
@@ -2120,6 +2126,35 @@
       color: var(--text-gray);
       font-size: 0.78rem;
       line-height: 1.3;
+    }
+
+    .address-status:empty {
+      display: none;
+    }
+
+    .address-retry {
+      justify-self: start;
+      min-height: 44px;
+      padding: 8px 12px;
+      border: 1px solid var(--blue-roof);
+      border-radius: 6px;
+      background: var(--white);
+      color: var(--blue-night);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .address-assistance a {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .address-retry[hidden],
+    .address-assistance[hidden] {
+      display: none;
     }
 
     .field.is-valid input,
@@ -3680,15 +3715,18 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
                   <p class="diagnostic-error" id="diagnostic-situation-error" data-error-for="situation" aria-live="polite"></p>
 
                   <div class="field" data-field>
-                    <label for="diagnostic-address">Adresse complète</label>
+                    <label for="diagnostic-address">Adresse complète <span class="field-help">(obligatoire)</span></label>
                     <div class="address-combobox" data-address-combobox>
-                      <input id="diagnostic-address" name="address" type="text" autocomplete="address-line1" placeholder="Ex. Orléans, Olivet, Saran..." required role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="diagnostic-address-suggestions" aria-describedby="diagnostic-address-help diagnostic-address-error">
+                      <input id="diagnostic-address" name="address" type="text" autocomplete="off" spellcheck="false" maxlength="240" placeholder="Ex. 12 rue de la République, 45000 Orléans" required role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="diagnostic-address-suggestions" aria-describedby="diagnostic-address-help diagnostic-address-error" aria-busy="false">
                       <!-- Suggestions BAN asynchrones, un select natif ne convient pas. -->
                       <!-- [html-validate-disable-next prefer-native-element] -->
-                      <div class="address-suggestions" id="diagnostic-address-suggestions" role="listbox" data-address-suggestions hidden></div>
+                      <div class="address-suggestions" id="diagnostic-address-suggestions" role="listbox" aria-label="Adresses complètes proposées" data-address-suggestions hidden></div>
                     </div>
-                    <span class="field-help" id="diagnostic-address-help">DFT intervient autour d’Orléans et dans le Loiret.</span>
+                    <span class="field-help" id="diagnostic-address-help">Saisissez le numéro et la rue, puis sélectionnez l’adresse avec son code postal et sa commune.</span>
+                    <span class="field-help address-status" id="diagnostic-address-status" role="status" aria-live="polite" aria-atomic="true"></span>
                     <span class="diagnostic-error" id="diagnostic-address-error" data-error-for="address" aria-live="polite"></span>
+                    <button class="address-retry" id="diagnostic-address-retry" type="button" hidden>Réessayer la recherche</button>
+                    <span class="field-help address-assistance" id="diagnostic-address-assistance" hidden>Adresse introuvable ou sans numéro ? <a href="tel:+33688046639">Appelez DFT au 06 88 04 66 39</a> pour préciser le lieu d’intervention.</span>
                   </div>
 
                   <div class="diagnostic-reassurance">Si la situation évolue, vous pourrez le préciser dans le message ou par téléphone.</div>
@@ -3940,6 +3978,7 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
     <a class="btn btn-dark" href="#diagnostic" data-diagnostic-open>Diagnostic</a>
   </nav>
 
+  <script src="assets/js/address-autocomplete.js"></script>
   <script>
     (function () {
       const toggle = document.querySelector(".nav-toggle");
@@ -3962,20 +4001,16 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
       const addressInput = document.querySelector("#diagnostic-address");
       const addressCombobox = document.querySelector("[data-address-combobox]");
       const addressSuggestions = document.querySelector("[data-address-suggestions]");
-      const localAddressSuggestions = [
-        { label: "Orléans", meta: "Loiret" },
-        { label: "Fleury-les-Aubrais", meta: "Loiret" },
-        { label: "Saran", meta: "Loiret" },
-        { label: "Saint-Jean-de-Braye", meta: "Loiret" },
-        { label: "Olivet", meta: "Loiret" },
-        { label: "Saint-Cyr-en-Val", meta: "Loiret" },
-        { label: "Loiret", meta: "Zone d’intervention" }
-      ];
+      const addressController = window.DFTAddressAutocomplete && window.DFTAddressAutocomplete.create({
+        input: addressInput,
+        box: addressCombobox,
+        list: addressSuggestions,
+        status: document.querySelector("#diagnostic-address-status"),
+        error: document.querySelector("#diagnostic-address-error"),
+        assistance: document.querySelector("#diagnostic-address-assistance"),
+        retry: document.querySelector("#diagnostic-address-retry")
+      });
       let diagnosticLastFocus = null;
-      let addressDebounce = null;
-      let addressRequest = null;
-      let addressResults = [];
-      let addressActiveIndex = -1;
 
       function setMenu(open) {
         toggle.setAttribute("aria-expanded", String(open));
@@ -4126,208 +4161,8 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
         }
       }
 
-      function escapeHtml(value) {
-        return String(value).replace(/[&<>"']/g, function (character) {
-          return {
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            "\"": "&quot;",
-            "'": "&#039;"
-          }[character];
-        });
-      }
-
       function closeAddressSuggestions() {
-        if (addressDebounce) {
-          window.clearTimeout(addressDebounce);
-          addressDebounce = null;
-        }
-        if (addressRequest) {
-          addressRequest.abort();
-          addressRequest = null;
-        }
-        addressResults = [];
-        addressActiveIndex = -1;
-        if (addressSuggestions) {
-          addressSuggestions.hidden = true;
-          addressSuggestions.innerHTML = "";
-        }
-        if (addressInput) {
-          addressInput.setAttribute("aria-expanded", "false");
-          addressInput.removeAttribute("aria-activedescendant");
-        }
-        if (addressCombobox) addressCombobox.classList.remove("is-open");
-      }
-
-      function getAddressMeta(properties) {
-        const parts = [];
-        if (properties.postcode) parts.push(properties.postcode);
-        if (properties.city && properties.city !== properties.name) parts.push(properties.city);
-        return parts.join(" ");
-      }
-
-      function normalizeAddressValue(value) {
-        return String(value)
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .toLowerCase();
-      }
-
-      function getLocalAddressMatches(query) {
-        const normalizedQuery = normalizeAddressValue(query.trim());
-        if (normalizedQuery.length < 3) return [];
-        return localAddressSuggestions.filter(function (item) {
-          return normalizeAddressValue(item.label).includes(normalizedQuery);
-        });
-      }
-
-      function setAddressActive(index) {
-        if (!addressSuggestions || !addressInput) return;
-        const options = Array.from(addressSuggestions.querySelectorAll("[role='option']"));
-        addressActiveIndex = index;
-        if (index < 0) addressInput.removeAttribute("aria-activedescendant");
-
-        options.forEach(function (option, optionIndex) {
-          const active = optionIndex === index;
-          option.classList.toggle("is-active", active);
-          option.setAttribute("aria-selected", String(active));
-          if (active) {
-            addressInput.setAttribute("aria-activedescendant", option.id);
-            option.scrollIntoView({ block: "nearest" });
-          }
-        });
-      }
-
-      function selectAddressSuggestion(index) {
-        const result = addressResults[index];
-        if (!result || !addressInput) return;
-        addressInput.value = result.label;
-        validateInput(addressInput, false);
-        setError("address", "");
-        closeAddressSuggestions();
-        addressInput.focus({ preventScroll: true });
-      }
-
-      function renderAddressSuggestions(features, query) {
-        if (!addressInput || !addressSuggestions || !addressCombobox) return;
-        const seenLabels = new Set();
-        const apiMatches = features.map(function (feature) {
-          const properties = feature.properties || {};
-          return {
-            label: properties.label || "",
-            meta: getAddressMeta(properties)
-          };
-        });
-        addressSuggestions.innerHTML = "";
-        addressResults = getLocalAddressMatches(query).concat(apiMatches)
-          .filter(function (item) {
-            const normalizedLabel = normalizeAddressValue(item.label);
-            if (!normalizedLabel || seenLabels.has(normalizedLabel)) return false;
-            seenLabels.add(normalizedLabel);
-            return true;
-          })
-          .slice(0, 5);
-
-        if (!addressResults.length) {
-          closeAddressSuggestions();
-          return;
-        }
-
-        addressResults.forEach(function (item, index) {
-          const option = document.createElement("div");
-          option.className = "address-suggestion";
-          option.id = "diagnostic-address-option-" + index;
-          option.setAttribute("role", "option");
-          option.setAttribute("aria-selected", "false");
-          option.innerHTML = "<strong>" + escapeHtml(item.label) + "</strong>" + (item.meta ? "<small>" + escapeHtml(item.meta) + "</small>" : "");
-          option.addEventListener("pointerdown", function (event) {
-            event.preventDefault();
-            selectAddressSuggestion(index);
-          });
-          option.addEventListener("mousedown", function (event) {
-            event.preventDefault();
-          });
-          option.addEventListener("click", function (event) {
-            event.preventDefault();
-            selectAddressSuggestion(index);
-          });
-          addressSuggestions.appendChild(option);
-        });
-
-        addressSuggestions.hidden = false;
-        addressInput.setAttribute("aria-expanded", "true");
-        addressCombobox.classList.add("is-open");
-        setAddressActive(-1);
-      }
-
-      function requestAddressSuggestions(query) {
-        const trimmedQuery = query.trim();
-        if (trimmedQuery.length < 3) {
-          closeAddressSuggestions();
-          return;
-        }
-
-        if (addressRequest) addressRequest.abort();
-        const controller = new AbortController();
-        addressRequest = controller;
-        const url = "https://api-adresse.data.gouv.fr/search/?q=" + encodeURIComponent(trimmedQuery) + "&limit=5&autocomplete=1";
-
-        fetch(url, { signal: controller.signal })
-          .then(function (response) {
-            if (!response.ok) throw new Error("Adresse API indisponible");
-            return response.json();
-          })
-          .then(function (data) {
-            const features = Array.isArray(data.features) ? data.features : [];
-            renderAddressSuggestions(features, trimmedQuery);
-          })
-          .catch(function (error) {
-            if (error.name !== "AbortError") renderAddressSuggestions([], trimmedQuery);
-          })
-          .finally(function () {
-            if (addressRequest === controller) addressRequest = null;
-          });
-      }
-
-      function queueAddressSearch() {
-        if (!addressInput) return;
-        const query = addressInput.value;
-        if (addressDebounce) window.clearTimeout(addressDebounce);
-        if (query.trim().length < 3) {
-          closeAddressSuggestions();
-          return;
-        }
-        addressDebounce = window.setTimeout(function () {
-          requestAddressSuggestions(query);
-        }, 250);
-      }
-
-      function handleAddressKeydown(event) {
-        if (!addressSuggestions || !addressResults.length || addressSuggestions.hidden) {
-          if (event.key === "ArrowDown") {
-            event.preventDefault();
-            queueAddressSearch();
-          }
-          return;
-        }
-
-        if (event.key === "ArrowDown") {
-          event.preventDefault();
-          setAddressActive(addressActiveIndex < addressResults.length - 1 ? addressActiveIndex + 1 : 0);
-        } else if (event.key === "ArrowUp") {
-          event.preventDefault();
-          setAddressActive(addressActiveIndex > 0 ? addressActiveIndex - 1 : addressResults.length - 1);
-        } else if (event.key === "Enter" && addressActiveIndex >= 0) {
-          event.preventDefault();
-          selectAddressSuggestion(addressActiveIndex);
-        } else if (event.key === "Escape") {
-          event.preventDefault();
-          event.stopPropagation();
-          closeAddressSuggestions();
-        } else if (event.key === "Tab") {
-          closeAddressSuggestions();
-        }
+        if (addressController) addressController.close();
       }
 
       function setError(name, message) {
@@ -4336,6 +4171,11 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
       }
 
       function validateInput(input, showMessage) {
+        if (input && input === addressInput) {
+          if (addressController) return addressController.validate(showMessage);
+          setError("address", "La recherche d’adresses n’a pas pu se charger. Rechargez la page ou appelez DFT au 06 88 04 66 39.");
+          return false;
+        }
         if (!input || input.name === "form-name" || input.name === "message" || input.type === "radio") return true;
         const field = input.closest("[data-field]");
         let message = "";
@@ -4451,27 +4291,6 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
         });
       }
 
-      if (addressInput) {
-        addressInput.addEventListener("input", queueAddressSearch);
-        addressInput.addEventListener("focus", function () {
-          if (addressInput.value.trim().length >= 3) queueAddressSearch();
-        });
-        addressInput.addEventListener("keydown", handleAddressKeydown);
-        addressInput.addEventListener("blur", function () {
-          window.setTimeout(function () {
-            if (!addressCombobox || !addressCombobox.contains(document.activeElement)) {
-              closeAddressSuggestions();
-            }
-          }, 120);
-        });
-      }
-
-      document.addEventListener("pointerdown", function (event) {
-        if (addressCombobox && !addressCombobox.contains(event.target)) {
-          closeAddressSuggestions();
-        }
-      });
-
       if (diagnosticForm) {
         diagnosticForm.querySelector("[data-next-step]").addEventListener("click", function () {
           if (validateStepOne()) setDiagnosticStep(2, true);
@@ -4501,6 +4320,13 @@ L’objectif est simple : identifier la cause exacte, vérifier les points sensi
           if (diagnosticForm.dataset.step !== "2") {
             event.preventDefault();
             if (validateStepOne()) setDiagnosticStep(2, true);
+            return;
+          }
+          // Recheck step 1 at final submission, not only on "Continuer".
+          if (!validateStepOne()) {
+            event.preventDefault();
+            setDiagnosticStep(1, false);
+            validateStepOne();
             return;
           }
           if (!validateStepTwo()) event.preventDefault();
