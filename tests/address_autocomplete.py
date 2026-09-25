@@ -377,8 +377,11 @@ def scenarios(context, mobile, prefix):
         expect(page.get_by_role('option')).to_have_count(7)
         first=page.get_by_role('option').first
         first.dispatch_event('pointerdown', {'pointerType':'touch'})
+        field.evaluate('(e) => e.blur()')
         page.locator('#diagnostic-address-suggestions').evaluate('(e) => e.scrollTop = e.scrollHeight')
         first.dispatch_event('pointercancel', {'pointerType':'touch'})
+        page.wait_for_timeout(250)
+        expect(page.get_by_role('option')).to_have_count(7)
         assert not field.evaluate('(e) => e.validity.valid')
         last=page.get_by_role('option').last
         last.tap() if mobile else last.click()

@@ -56,7 +56,7 @@
     const cache = new Map();
     let selected = null, results = [], active = -1, touched = false;
     let debounce = null, request = null, sequence = 0, composing = false;
-    let pointerInField = false, suppressFocus = false, blurTimer = null;
+    let pointerInField = false, listInteraction = false, suppressFocus = false, blurTimer = null;
     let lastValue = input.value;
     function announce(message) { if (status) status.textContent = message; }
     function cancelPending() {
@@ -74,6 +74,7 @@
       box.classList.remove("is-open");
     }
     function close() {
+      listInteraction = false;
       if (!list.hidden || request || debounce) announce("");
       cancelPending(); hideList();
     }
@@ -242,7 +243,7 @@
       window.clearTimeout(blurTimer);
       blurTimer = window.setTimeout(function () {
         // Do not move a suggestion, retry button or phone link while a tap is landing.
-        if (!pointerInField && !(field && field.contains(document.activeElement))) { close(); validate(true); }
+        if (!listInteraction && !pointerInField && !(field && field.contains(document.activeElement))) { close(); validate(true); }
       }, 160);
     });
     input.addEventListener("keydown", function (event) {
@@ -260,6 +261,7 @@
       }
     });
     document.addEventListener("pointerdown", function (event) {
+      listInteraction = list.contains(event.target);
       pointerInField = Boolean(field && field.contains(event.target));
       if (!box.contains(event.target)) close();
     });
