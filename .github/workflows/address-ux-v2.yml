@@ -1,0 +1,24 @@
+name: Address UX v2
+on:
+  push:
+    branches: [chatgpt/dft-address-ux-v2]
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Inspect public geocoding contract
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.parse
+          for text in ['rue de la republique', 'rue de la republique Orleans', '12 rue de la republique Orleans', 'Orleans', 'rue du 8 mai Orleans']:
+              params = {'text':text, 'type':'StreetAddress', 'maximumResponses':5, 'lonlat':'1.904,47.903'}
+              url = 'https://data.geopf.fr/geocodage/completion/?' + urllib.parse.urlencode(params)
+              print(url, flush=True)
+              print(urllib.request.urlopen(url, timeout=20).read().decode(), flush=True)
+          for path in ['completion/openapi', 'openapi']:
+              body = urllib.request.urlopen('https://data.geopf.fr/geocodage/' + path, timeout=20).read().decode()
+              print(path, body[:6000], flush=True)
+          PY
