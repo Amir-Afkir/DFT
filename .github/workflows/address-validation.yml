@@ -3,7 +3,7 @@ on:
   push:
     branches: [chatgpt/dft-complete-address]
 permissions:
-  contents: read
+  contents: write
 jobs:
   browser-tests:
     runs-on: ubuntu-latest
@@ -11,24 +11,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Prepare targeted changes
-        if: hashFiles('scripts/prepare-address.py') != ''
         run: python3 scripts/prepare-address.py
+      - name: Check JavaScript syntax
+        run: node --check assets/js/address-autocomplete.js
       - name: Install browser test tools
-        if: hashFiles('tests/address_autocomplete.py') != ''
         run: |
           python3 -m pip install playwright==1.57.0
           python3 -m playwright install --with-deps chromium webkit
       - name: Test desktop and mobile
-        if: hashFiles('tests/address_autocomplete.py') != ''
         run: python3 tests/address_autocomplete.py
       - name: Check live geocoding service
         run: |
           curl --fail --silent --show-error --max-time 20 'https://data.geopf.fr/geocodage/search?index=address&type=housenumber&limit=5&autocomplete=true&q=12%20rue%20de%20la%20Republique%2045000%20Orleans' -o /tmp/geocoding.json
           python3 -c 'import json; d=json.load(open("/tmp/geocoding.json")); assert any(f.get("properties",{}).get("type")=="housenumber" for f in d.get("features",[])); print(json.dumps(d,ensure_ascii=False))'
+      - name: Record tested page on working branch only
+        run: |
+          test "$GITHUB_REF" = 'refs/heads/chatgpt/dft-complete-address'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Integrate tested complete-address autocomplete'
+          git push origin HEAD:refs/heads/chatgpt/dft-complete-address
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: address-validation
+          retention-days: 7
           path: |
             index.html
             assets/js/address-autocomplete.js
